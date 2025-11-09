@@ -31,8 +31,8 @@
                 </select>
             </label>
             <div class="filter-buttons">
-                <button [disabled]="selectedState=='Location' && selectedRole=='Role'" class="applybtn" (click)="applyFilters()">apply</button>
-                <button class="clearbtn" (click)="clearFilters()">clear</button>
+                <button [disabled]="selectedState=='Location' || selectedRole=='Role'" class="applybtn" (click)="applyFilters()">apply</button>
+                <button [disabled]="selectedState=='Location' || selectedRole=='Role'" class="clearbtn" (click)="clearFilters()">clear</button>
             </div>
         </div>
         @if(filterData.length === 0) {

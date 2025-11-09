@@ -1,3 +1,71 @@
-div {
-    margin-left: 60px;
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    .categories {
+        width: 60%;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        gap: 50px;
+        button {
+            padding: 8px 16px;
+            background-color: black;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: border-bottom 0.3s linear;
+
+            &.active,
+            &:hover {
+                color: white;
+                border-radius: 4px;
+                background-color: royalblue;
+            }
+        }
+    }
+
+    .messages-content {
+        width: 60%;
+        height: 75vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        gap: 20px;
+
+        .message-list {
+            width: 30%;
+            height: 100%;
+            .search {
+                border: none;
+                width: 100%;
+                border-radius: 4px;
+                background-color: #1a1a1a;
+                font-size: 14px;
+                letter-spacing: 2px;
+                padding: 10px;
+                outline: none;
+                color: white;
+                margin-bottom: 20px;
+            }
+        }
+
+        .message-box {
+            height: 100%;
+            margin-left: 20px;
+            width: 70%;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            padding: 20px;
+            color: white;
+            font-size: 14px;
+        }
+
+
+    }
 }

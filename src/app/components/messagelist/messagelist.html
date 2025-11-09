@@ -1,0 +1,14 @@
+<div class="container">
+    @for(message of filterMessage; track message) {
+        <div class="message-item"
+            (click)="selectMessage(message)"
+             [class.selected]="selectedMessage === message"
+             tabindex="0">
+            <img src="banner.jpg" alt="User Icon" class="user-icon"/>
+            <div class="message-info">
+                <p class="sender" [ngClass]="{'unread': !message.isRead}">{{ message.sender }}</p>
+                <p [ngClass]="{'unread': !message.isRead}">{{ message.time }}</p>
+            </div>
+        </div>
+    }
+</div>

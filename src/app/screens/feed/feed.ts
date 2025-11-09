@@ -129,9 +129,10 @@ export class Feed {
     this.filterData = this.jobData.filter(job => {
       const matchesState = this.selectedState ? job.location === this.selectedState : true;
       const matchesRole = this.selectedRole ? job.openingRoles.includes(this.selectedRole) : true;
-      return matchesState || matchesRole;
+      return matchesState && matchesRole;
     });
   }
+
   clearFilters(): void {
     this.selectedState = 'Location';
     this.selectedRole = 'Role';

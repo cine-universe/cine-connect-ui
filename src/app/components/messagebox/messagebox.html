@@ -1,0 +1,28 @@
+<div class="container" *ngIf="message!=null && message!==undefined">
+    <div class="msg-header">
+        <img src="banner.jpg" alt="dp">
+        <div class="msg-header-info">
+            <h3>{{ message?.sender || 'Conversation' }}</h3>
+            <p>{{ message?.time }}</p>
+        </div>
+    </div>
+    <div class="msg-body" #scrollContainer>
+        <div class="no-messages" *ngIf="!messages || messages.length === 0">
+            No messages yet. Start the conversation.
+        </div>
+
+        <div *ngFor="let msg of messages; trackBy: trackById" class="msg-row" [class.me]="msg.senderId === currentUserId">
+            <div class="bubble">
+                <div class="text">{{ msg.text }}</div>
+                <div class="meta">{{ msg.time }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="msg-bottom">
+        <input type="text" placeholder="Type a message..." [(ngModel)]="outgoingMessage" (keydown.enter)="sendMessage()"/>
+        <button class="send" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+    </div>
+</div>
+<div class="no-selection" *ngIf="!message">
+    <p>Select a message to view the conversation.</p>
+</div>

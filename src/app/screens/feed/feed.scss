@@ -98,6 +98,27 @@
                         color: red;
                     }
                 }
+
+                .clearbtn[disabled] {
+                    opacity: 0.3;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                    border: none;
+                    background-color: #1a1a1a;
+                }
+
+                .applybtn[disabled] {
+                    opacity: 0.5;
+                    cursor: not-allowed;
+                    pointer-events: none;
+                    background-color: rgb(98, 131, 230);
+                    color: white;
+                    &:hover {
+                        /* prevent hover visual change when disabled */
+                        background-color: #2b2b2b;
+                        color: #7a7a7a;
+                    }
+                }
             }
         }
 

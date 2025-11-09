@@ -1,0 +1,4 @@
+<div class="search-box">
+    <input #searchInput type="text" (input)="onSearch($event.target.value)" class="input-search" placeholder="Global Search...">
+    <button class="btn-search" (click)="reset(searchInput)"><mat-icon>clear</mat-icon></button>
+</div>

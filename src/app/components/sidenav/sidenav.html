@@ -1,0 +1,51 @@
+<!-- Desktop Sidebar -->
+<nav class="sidenav desktop">
+  <ul>
+    <li>
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" name="Home">
+        <mat-icon>home</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/feed" routerLinkActive="active" name="Feed">
+        <mat-icon>search</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/messages" routerLinkActive="active" name="Messages">
+        <mat-icon>message</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/profile" routerLinkActive="active" name="Profile">
+        <mat-icon>person</mat-icon>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- Mobile Bottom Nav -->
+<nav class="sidenav mobile">
+  <ul>
+    <li>
+      <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>home</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/feed" routerLinkActive="active">
+        <mat-icon>search</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/messages" routerLinkActive="active">
+        <mat-icon>message</mat-icon>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/profile" routerLinkActive="active">
+        <mat-icon>person</mat-icon>
+      </a>
+    </li>
+  </ul>
+</nav>

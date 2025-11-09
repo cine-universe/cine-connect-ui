@@ -1,0 +1,23 @@
+<div class="home desktop">
+    <div class="banner" [style.--banner-url]="bannerUrlValue">
+        <div class="region">
+            <p>{{ region }}</p><mat-icon>place</mat-icon>
+        </div>
+        <div class="movie-info">
+            <h1>{{ title }}</h1>
+            <p>{{ description }}</p>
+            <button>view</button>
+        </div>
+        <p class="tag">Recently Added</p>
+    </div>
+    <div class="content">
+        <div class="movie-cards">
+            @for(img of images; track img) {
+            <div class="card">
+                <img [src]="img"/>
+                <p>Baahubali</p>
+            </div>
+            }
+        </div>
+    </div>
+</div>

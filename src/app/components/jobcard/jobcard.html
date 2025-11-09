@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="posted-info">
+        <img src="banner.jpg" alt="Avatar" class="avatar">
+        <p>{{ data.name }}</p>
+        <p class="role">{{ data.role }}</p>
+    </div>
+    <div class="post-info">
+        <h2>{{ data.title }}</h2>
+        <p class="loc">{{ data.location }}</p>
+        <p class="genre">{{ data.genre }}</p>
+        <div class="openings">
+            @for(role of data.openingRoles; track role) {
+                <p class="opening-roles">{{ role }}</p>
+            }
+        </div>
+        <div class="time-tag">
+            <b>{{ data.postingTime }}</b>
+            <button>View</button>
+        </div>
+    </div>
+</div>

@@ -1,3 +1,47 @@
-<div>
-<p>profile works!</p>
+<div class="profile-container">
+    <div class="profile-left">
+        <img [src]="userProfile.avatarUrl" alt="Profile Picture" class="profile-picture"/>
+        <div class="brief">
+            <h2>{{ userProfile.name }}</h2>
+            <div class="project-count">
+                <b>{{ userProfile.projectsCount }}</b>
+                <p> projects</p>
+            </div>
+            <p>{{ userProfile.email }}</p>
+            <div class="role-box">
+            @for(role of userProfile.roles; track role) {
+                <p class="role">{{ role }}</p>
+            }
+            </div>
+            <mat-icon>share</mat-icon>
+        </div>
+    </div>
+    <div class="profile-content">
+        <div class="category">
+            @for(category of categories; track category) {
+                <button
+                  [class.active]="category === selectedCategory"
+                  (click)="selectCategory(category)">
+                  {{ category }}
+                </button>
+            }
+        </div>
+        @if(selectedCategory==='Posts') {
+            <div class="posts">
+                @for(url of posts; track url) {
+                    <div class="post" (click)="openPost(url)" tabindex="0" (keydown.enter)="openPost(url)">
+                        <img [src]="url" alt="post">
+                    </div>
+                }
+            </div>
+        } 
+    </div>
+    @if(selectedPost) {
+        <div class="modal-overlay" (click)="closePost()">
+            <div class="modal-content" (click)="$event.stopPropagation()">
+                <button class="modal-close" (click)="closePost()" aria-label="Close">✕</button>
+                <img [src]="selectedPost" alt="Post preview" />
+            </div>
+        </div>
+    }
 </div>

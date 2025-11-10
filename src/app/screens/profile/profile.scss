@@ -1,3 +1,162 @@
-div {
+.profile-container {
     margin-left: 60px;
+    display: grid;
+    grid-template-columns: 3fr 7fr;
+
+    .profile-left {
+        margin: 50px 0px 0px 50px;
+        padding: 30px;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .profile-picture {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .brief {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            background-color: #1a1a1a;
+            border-radius: 4px;
+            padding: 20px;
+
+            h2 {
+                margin-top: 0;
+            }
+
+            .project-count {
+                display: flex;
+                align-items: center;
+                gap: 4px ;
+                b {
+                    background-color: green;
+                    width: fit-content;
+                    height: fit-content;
+                    border-radius: 8px;
+                    padding: 4px;
+                }   
+            }
+
+            .role-box {
+                display: flex;
+                gap: 4px;
+                .role {
+                    background-color: royalblue;
+                    border-radius: 8px;
+                    padding: 4px;
+                    width: fit-content;
+                    font-size: small;
+                }
+            }
+        }
+    }
+
+    .profile-content {
+        flex: 1;
+        border-radius: 4px;
+        margin: 30px;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+
+        .category {
+            display: flex;
+            justify-content: space-around;
+
+            button {
+                width: 100%;
+                cursor: pointer;
+                background: none;
+                border: none;
+                padding: 20px;
+                font-weight: bold;
+                border: 2px solid black;
+
+                &:hover,
+                &.active {
+                    background-color: #333333;
+                    opacity: 0.7;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 4px;
+
+            img {
+                width: 100%;
+                height: 300px;
+                border-radius: 4px;
+                object-fit: cover;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+                &:hover {
+                    opacity: 0.5;
+                }
+            }
+
+        }
+    }
+    /* modal overlay & content */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1200;
+        /* backdrop covers entire screen making background uninteractive */
+    }
+
+    .modal-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+        background: #0b0b0b;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content img {
+        max-width: 100%;
+        max-height: 80vh;
+        border-radius: 6px;
+        display: block;
+    }
+
+    /* close button */
+    .modal-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(255,255,255,0.06);
+        border: none;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.12); }
+
 }

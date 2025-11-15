@@ -12,8 +12,17 @@ export class ProfileService {
       name: 'John Doe',
       email: 'john.doe@gmail.com',
       avatarUrl: 'banner.jpg',
-      roles: ['Admin', 'Editor'],
-      projectsCount: 12
+      primarySkills: ['Admin', 'Editor'],
+      skills: ['Acting', 'Editing', 'Singing'],
+      projectsCount: 12,
+      bio: '',
+      achievements: [{
+        id: 1,
+        userId: 1,
+        award: 'Steller',
+        category: 'Editing',
+        year: 2024
+      }]
     };
     return userDetails;
   }

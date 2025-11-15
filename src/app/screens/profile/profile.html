@@ -8,9 +8,9 @@
                 <p> projects</p>
             </div>
             <p>{{ userProfile.email }}</p>
-            <div class="role-box">
-            @for(role of userProfile.roles; track role) {
-                <p class="role">{{ role }}</p>
+            <div class="pskill-box">
+            @for(skill of userProfile.primarySkills; track skill) {
+                <p class="p-skill">{{ skill }}</p>
             }
             </div>
             <mat-icon>share</mat-icon>
@@ -28,14 +28,113 @@
         </div>
         @if(selectedCategory==='Posts') {
             <div class="posts">
-                @for(url of posts; track url) {
+                @for(url of posts; track $index) {
                     <div class="post" (click)="openPost(url)" tabindex="0" (keydown.enter)="openPost(url)">
                         <img [src]="url" alt="post">
                     </div>
                 }
             </div>
-        } 
+        } @else if(selectedCategory==='About') {
+            <div class="about">
+                <div class="description">
+                    <div class="desc-header">
+                        <h3>Description</h3>
+                        <button (click)="openDescription()"><mat-icon class="edit">edit</mat-icon></button>
+                    </div>
+                    <p>{{ userProfile?.bio || 'No bio provided. Tell people about yourself — experience, interests, recent projects.' }}</p>
+                </div>
+                <div class="skills">
+                    <div class="skill-header">
+                        <h3>Skills</h3>
+                        <div class="skill-action-btns">
+                            <button (click)="openSkills('add')"><mat-icon class="edit">add</mat-icon></button>
+                            <button (click)="openSkills('del')"><mat-icon class="edit">delete</mat-icon></button>
+                        </div>
+                    </div>
+                    <div class="skill-box">
+                    @for(skill of userProfile?.skills; track skill) {
+                        <p>{{ skill }}</p>
+                    }
+                    </div>
+                </div>
+                <div class="achievements">
+                    <div class="ach-header">
+                        <h3>Achievements</h3>
+                        <button><mat-icon class="edit">edit</mat-icon></button>
+                    </div>
+                    @for(achievement of userProfile?.achievements; track achievement) {
+                        <div class="achievement">
+                            <h4>{{ achievement.award }}</h4>
+                            <p>{{ achievement.year }}</p>
+                            <p>{{ achievement.category }}</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        } @else if(selectedCategory==='Experience') {
+            <div class="exp">
+
+            </div>
+        }
     </div>
+
+    <!-- description edit dialog -->
+    @if(isEditingDescription) {
+        <div class="modal-overlay" (click)="cancelDescription()">
+            <div class="modal-content dialog" (click)="$event.stopPropagation()">
+                <p>{{descriptionHeading}}</p>
+                <textarea rows="6" [(ngModel)]="editDescription" placeholder="Write about yourself..." maxlength="900"></textarea>
+                <div class="dialog-actions">
+                    <p>{{ editDescription.length }}/900</p>
+                    <button class="primary-btn" (click)="saveDescription()">Save</button>
+                </div>
+                <button class="modal-close" (click)="cancelDescription()" aria-label="Close">✕</button>
+            </div>
+        </div>
+    }
+
+    <!-- skill remove dialog -->
+    @if(isRemovingSkill) {
+        <div class="modal-overlay" (click)="cancelSkills()">
+            @if(addOrDel==='del') {
+                <div class="modal-content skills-popup" (click)="$event.stopPropagation()">
+                    <p class="heading">Skills</p>
+                    <div class="skill-sec">
+                        @if(userProfile?.skills.length>0) {
+                            @for(skill of skillsPopup; track $index) {
+                                <div class="skill-btn">
+                                    <p>{{skill}}</p>
+                                    <mat-icon (click)="removeSkill($index)">close</mat-icon>
+                                </div>
+                            }
+                        } @else {
+                            <p>No-Skills</p>
+                        }
+                    </div>
+                    <button class="primary-btn" (click)="saveSkills('del')">Save</button>
+                    <button class="modal-close" (click)="cancelSkills()" aria-label="Close">✕</button>
+                </div>
+            } @else {
+                <div class="modal-content skills-add" (click)="$event.stopPropagation()">
+                    <div class="add-box">
+                        <input type="text" [(ngModel)]="newSkill" placeholder="enter a skill...">
+                        <button (click)="addSkill()"><mat-icon>add</mat-icon></button>
+                    </div>
+                    <div class="skills-box">
+                    @for(skill of newSkillList; track $index) {
+                        <div class="skill-btn">
+                            <p>{{skill}}</p>
+                            <mat-icon (click)="removeNewSkill($index)">close</mat-icon>
+                        </div>
+                    }
+                    </div>
+                    <button class="modal-close" (click)="cancelSkills()" aria-label="Close">✕</button>
+                    <button class="primary-btn" (click)="saveSkills('new')">Save</button>
+                </div>
+            }
+        </div>
+    }
+
     @if(selectedPost) {
         <div class="modal-overlay" (click)="closePost()">
             <div class="modal-content" (click)="$event.stopPropagation()">

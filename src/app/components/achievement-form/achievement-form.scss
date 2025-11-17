@@ -1,0 +1,43 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  font-size: small;
+
+  mat-form-field {
+    margin: 0;
+    padding: 0;
+  }
+  input {
+    margin: 0;
+    padding: 0;
+  }
+
+  .primary-btn {
+    align-self: end;
+  }
+}
+
+.ach-header {
+    display: flex;
+    justify-content: space-between;
+
+    /* close button */
+    .modal-close {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: rgba(255,255,255,0.06);
+        border: none;
+        color: #fff;
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.12); }
+}

@@ -1,0 +1,29 @@
+<div class="ach-header">
+    <h3>Achievement</h3>
+    <button class="modal-close" aria-label="Close" (click)="onCancel()">✕</button>
+</div>
+<form [formGroup]="awardForm" (submit)="onSubmit()" class="form-container">
+  <mat-form-field appearance="fill">
+    <mat-label>Award</mat-label>
+    <input matInput formControlName="award" placeholder="e.g. Oscar">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Year</mat-label>
+    <input matInput formControlName="year" placeholder="e.g. 2024" type="number" min="1947" max="2050">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Event Name</mat-label>
+    <input matInput formControlName="event" placeholder="e.g. SIIMA">
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <input matInput formControlName="category" placeholder="e.g. Best Actor">
+  </mat-form-field>
+
+  <button class="primary-btn" color="primary" type="submit" [disabled]="awardForm.invalid">
+    Submit
+  </button>
+</form>

@@ -60,15 +60,24 @@
                 <div class="achievements">
                     <div class="ach-header">
                         <h3>Achievements</h3>
-                        <button><mat-icon class="edit">edit</mat-icon></button>
+                        <button (click)="openAchievement('add', null)"><mat-icon>add</mat-icon></button>
                     </div>
-                    @for(achievement of userProfile?.achievements; track achievement) {
+                    <div class="ach-container">
+                    @for(achievement of userProfile?.achievements; track achievement.id) {
                         <div class="achievement">
-                            <h4>{{ achievement.award }}</h4>
+                            <div class="ach-header">
+                                <h4>{{ achievement.award }}</h4>
+                                <div class="ach-actions">
+                                    <button (click)="deleteAchievement(achievement?.id)"><mat-icon>delete</mat-icon></button>
+                                    <button (click)="openAchievement('edit', achievement?.id)"><mat-icon>edit</mat-icon></button>
+                                </div>
+                            </div>
+                            <p>{{ achievement.event }}</p>
                             <p>{{ achievement.year }}</p>
                             <p>{{ achievement.category }}</p>
                         </div>
                     }
+                    </div>
                 </div>
             </div>
         } @else if(selectedCategory==='Experience') {
@@ -132,6 +141,19 @@
                     <button class="primary-btn" (click)="saveSkills('new')">Save</button>
                 </div>
             }
+        </div>
+    }
+
+    <!-- achievement edit dialog -->
+    @if(isEditingAchievement) {
+        <div class="modal-overlay" (click)="cancelAchievements()">
+            <div class="modal-content" (click)="$event.stopPropagation()">
+                <app-achievement-form
+                    [achievement]="achievement"
+                    (saved)="onAchievementSaved($event)"
+                    (cancel)="cancelAchievements()">
+                </app-achievement-form>
+            </div>
         </div>
     }
 

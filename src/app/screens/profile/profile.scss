@@ -132,11 +132,6 @@
                     align-items: center;
                 }
 
-                .edit {
-                    background: none;
-                    border: none;
-                }
-
                 p {
                     width: 100%;
                     min-height: fit-content;
@@ -183,28 +178,45 @@
                 background-color: #0b0b0b;
                 border-radius: 4px;
                 padding: 10px;
+                .ach-container{
+                    display: flex;
+                    gap: 10px;
+                    flex-wrap: wrap;
+                }
                 .ach-header{
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
                 }
                 .achievement {
-                    margin: 0;
-                    padding: 0px 20px 0px 20px;
+                    width: 275px;
                     display: flex;
-                    justify-content: start;
-                    align-items: center;
-                    gap: 30px;
-                    border-radius: 4px;
-                    width: fit-content;
+                    flex-direction: column;
+                    gap: 5px;
+                    border: 1px solid #feb47b;
+                    border-radius: 5px;
+                    .ach-header {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin: 0;
+                        padding: 10px;
+                        background-image: linear-gradient(to right, #ff7e5f, #feb47b);
+                        color: white;
+                        border-radius: 4px 4px 0px 0px;
 
-                    h4 {
-                        color: gold;
+                        mat-icon {
+                            font-size: 20px;
+                            padding-top: 7px;
+                        }
+                        h4 {
+                            margin: 0;
+                        }
                     }
-
                     p {
-                        color: #333333;
-                        font-size: smaller;
+                        margin: 0;
+                        padding: 7px;
+                        font-size: small;
                     }
                 }
             }

@@ -21,7 +21,8 @@ export class ProfileService {
         userId: 1,
         award: 'Steller',
         category: 'Editing',
-        year: 2024
+        year: 2024,
+        event: 'SIMA 2024'
       }]
     };
     return userDetails;

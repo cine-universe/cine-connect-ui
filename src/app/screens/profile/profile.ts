@@ -2,11 +2,11 @@ import { Component, HostListener, OnDestroy } from '@angular/core';
 import { ProfileService } from '../../services/profile-service';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { JsonPipe } from '@angular/common';
+import { AchievementForm } from '../../components/achievement-form/achievement-form';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIconModule, FormsModule],
+  imports: [MatIconModule, FormsModule, AchievementForm],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })
@@ -20,11 +20,17 @@ export class Profile implements OnDestroy {
   isEditingDescription = false;
   editDescription = '';
 
+  // skill edit/add dialog state
   skillsPopup = [];
   isRemovingSkill = false;
   addOrDel = '';
   newSkill = '';
   newSkillList: string[] = [];
+
+  // achievement edit/add dialog state
+  isEditingAchievement = false;
+  addOrEdit = '';
+  achievement = {};
 
   selectedPost: string | null = null;
 
@@ -45,12 +51,7 @@ export class Profile implements OnDestroy {
   ngOnInit() {
     // Dummy user profile data
     this.userProfile = this.profileService.getUserProfile();
-    this.posts = ['banner.jpg', 'banner.jpg', 'baahubali.jpg','banner.jpg', 'banner.jpg', 'baahubali.jpg',
-      'banner.jpg', 'banner.jpg', 'baahubali.jpg','banner.jpg', 'banner.jpg', 'baahubali.jpg',
-      'banner.jpg', 'banner.jpg', 'baahubali.jpg','banner.jpg', 'banner.jpg', 'baahubali.jpg',
-      'banner.jpg', 'banner.jpg', 'baahubali.jpg','banner.jpg', 'banner.jpg', 'baahubali.jpg',
-      'banner.jpg', 'banner.jpg', 'baahubali.jpg','banner.jpg', 'banner.jpg', 'baahubali.jpg',
-    ];
+    this.posts = ['banner.jpg', 'baahubali.jpg'];
   }
 
   openPost(url: string) {
@@ -143,5 +144,55 @@ export class Profile implements OnDestroy {
 
   removeNewSkill(index: number) {
     this.newSkillList.splice(index, 1);
-  } 
+  }
+  
+  // open achievement edit/add dialog
+  openAchievement(operation: string, index: any) {
+    if (operation === 'edit') {
+      this.addOrEdit = 'edit';
+      this.achievement = this.userProfile?.achievements?.find((a: any) => a.id === index) ?? {};
+    } else {
+      this.addOrEdit = 'add';
+      this.achievement = {
+        award: '',
+        year: '',
+        event: '',
+        category: '',
+        userId: this.userProfile.id
+      };
+    }
+    this.isEditingAchievement = true;
+    try { document.body.style.overflow = 'hidden'; } catch {}
+  }
+
+  // after edit/add modal saves an achievement
+  onAchievementSaved(payload: any) {
+    this.userProfile = this.userProfile || {};
+    this.userProfile.achievements = this.userProfile.achievements || [];
+
+    if (this.addOrEdit === 'edit') {
+      const idx = this.userProfile.achievements.findIndex((a: any) => a.id === payload.id);
+      if (idx > -1) {
+        this.userProfile.achievements[idx] = payload;
+      } else {
+        this.userProfile.achievements.push(payload);
+      }
+    } else {
+      this.userProfile.achievements.push(payload);
+    }
+
+    this.isEditingAchievement = false;
+    this.achievement = {};
+    try { document.body.style.overflow = ''; } catch {}
+  }
+
+  deleteAchievement(index: number) {
+    this.userProfile.achievements=this.userProfile.achievements.filter((a: any) => a.id !== index);
+  }
+
+  cancelAchievements() {
+    this.isEditingAchievement = false;
+    this.achievement = {};
+    try { document.body.style.overflow = ''; } catch {}
+  }
 }

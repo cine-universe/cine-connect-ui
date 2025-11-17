@@ -4,4 +4,5 @@ export interface Achievements {
     award: string;
     year: number;
     category: string;
+    event: string;
 }

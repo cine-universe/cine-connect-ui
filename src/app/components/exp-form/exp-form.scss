@@ -1,0 +1,57 @@
+.container {
+    background-color: #0f0f0f;
+    color: white;
+    padding: 20px;
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+        font-size: small;
+
+        mat-form-field {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            margin: 0;
+            padding: 0;
+        }
+        .primary-btn {
+            align-self: flex-end;
+        }
+
+        .dates {
+            display: flex;
+            gap: 20px;
+        }
+
+        textarea {
+            height: 100px;
+            max-height: 300px;
+        }
+    }
+
+    .exp-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        /* close button */
+        .close {
+            background: rgba(255,255,255,0.06);
+            border: none;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close:hover { background: rgba(255,255,255,0.12); }
+    }
+}

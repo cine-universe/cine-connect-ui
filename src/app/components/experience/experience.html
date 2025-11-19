@@ -1,0 +1,60 @@
+<div class="exp-container">
+    <div class="exp-header">
+        <h3>Experience</h3>
+        <button><mat-icon>add</mat-icon></button>
+    </div>
+    <div class="experiences">
+        @for(exp of experiences; track exp.id) {
+            <div class="experience">
+                <div class="header">
+                    <h3>{{ exp?.projectTitle }}</h3>
+                    <div class="exp-actions">
+                        <button (click)="openDelete(exp)"><mat-icon>delete</mat-icon></button>
+                        <button (click)="openExperience(exp.id)"><mat-icon>edit</mat-icon></button>
+                    </div>
+                </div>
+                <div class="sub-header">
+                    <p matTooltip="Prouction Company . Type">{{ exp?.productionCompany }} . {{ exp?.productionType }}</p>
+                    <p>{{ exp?.location }}</p>
+                </div>
+                <div class="meta">
+                    <p class="role">{{ exp.role }}</p> - 
+                    <p>
+                        {{ exp?.startDate | date:'mediumDate' }} - {{ exp?.endDate | date: 'mediumDate' }}
+                    </p>
+                </div>
+                <div class="description">
+                    <p class="desc" [class.collapsed]="!isExpanded(exp.id)">
+                    @if(!isExpanded(exp.id)) {
+                        @if(isLongDescription(exp)) {
+                            {{ getShortDescription(exp) }}
+                        } @else {
+                            {{ exp.description }}
+                        }
+                    } @else {
+                        {{ exp.description }}
+                    }
+                    @if(isLongDescription(exp)) {
+                        <button class="see-more" (click)="toggleExpand(exp.id)">
+                            {{ isExpanded(exp.id) ? 'See less' : 'See more' }}
+                        </button>
+                    }
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+    <!-- delete confirmation modal -->
+    @if(selectedToDelete) {
+        <div class="confirm-overlay" (click)="cancelDelete()">
+            <div class="confirm-box" (click)="$event.stopPropagation()">
+                <h4>Confirm delete</h4>
+                <p>Are you sure you want to delete the Experience for <b><u>{{ selectedToDelete.projectTitle }}</u></b>?</p>
+                <div class="confirm-actions">
+                    <button class="secondary-btn" (click)="confirmDelete()">Delete</button>
+                    <button class="common-btn" (click)="cancelDelete()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>

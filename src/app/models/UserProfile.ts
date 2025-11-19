@@ -1,4 +1,5 @@
 import { Achievements } from "./Achievements";
+import { Experience } from "./Experience";
 
 export interface UserProfile {
   id: number;
@@ -10,4 +11,5 @@ export interface UserProfile {
   projectsCount: number;
   bio: string;
   achievements: Achievements[];
+  experiences: Experience[];
 }

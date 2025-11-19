@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="exp-header">
+        <h3>Experience</h3>
+        <button class="close" aria-label="Close" (click)="onCancel()">✕</button>
+    </div>
+    <form [formGroup]="expForm" (submit)="onSubmit()" class="form-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Project Title</mat-label>
+        <input matInput formControlName="projectTitle" placeholder="e.g. Varanasi">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Production Company</mat-label>
+        <input matInput formControlName="productionCompany" placeholder="e.g. FrameWorks">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Production Type</mat-label>
+        <mat-select formControlName="productionType" panelClass="custom-select-panel">
+            @for(pt of productionTypes; track $index) {
+                <mat-option [value]="pt">{{ pt }}</mat-option>
+            }
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" placeholder="e.g. Mumbai, IND">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Role</mat-label>
+        <input matInput formControlName="role" placeholder="e.g. Hero">
+    </mat-form-field>
+
+    <div class="dates">
+        <mat-form-field appearance="fill">
+            <mat-label>StartDate</mat-label>
+            <input matInput formControlName="startDate" placeholder="yyyy-MM-dd" type="date">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>EndDate</mat-label>
+            <input matInput formControlName="endDate" placeholder="yyyy-MM-dd" type="date">
+        </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="Enter your responsibilities"></textarea>
+    </mat-form-field>
+
+    <button class="primary-btn" color="primary" type="submit" [disabled]="expForm.invalid">
+        Submit
+    </button>
+    </form>
+</div>

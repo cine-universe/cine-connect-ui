@@ -3,10 +3,11 @@ import { ProfileService } from '../../services/profile-service';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AchievementForm } from '../../components/achievement-form/achievement-form';
+import { ExperienceComponent } from '../../components/experience/experience';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIconModule, FormsModule, AchievementForm],
+  imports: [MatIconModule, FormsModule, AchievementForm, ExperienceComponent],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })

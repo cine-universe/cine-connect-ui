@@ -11,3 +11,47 @@ body {
   background-color: black;
   color: white;
 }
+
+/* make dialog backdrop darker (increase opacity) */
+.custom-dialog-backdrop {
+  background-color: rgba(0, 0, 0, 0.85) !important; /* increase opacity as needed (0.0 - 1.0) */
+}
+
+/* optional: make dialog panel slightly translucent */
+.custom-dialog-panel .mat-dialog-container,
+.custom-dialog-panel .mat-mdc-dialog-container {
+  background-color: rgba(11, 11, 11, 0.96); /* panel background opacity */
+  /* you can also adjust backdrop blur */
+  /* backdrop-filter: blur(4px); */
+}
+
+/* ensure overlay panes still behave correctly */
+.cdk-overlay-container .cdk-global-overlay-wrapper {
+  pointer-events: auto;
+}
+
+/* Target the select panel (overlay) and options.
+   Use both legacy and MDC selectors to cover Angular Material variants. */
+.cdk-overlay-container .custom-select-panel .mat-option,
+.cdk-overlay-container .custom-select-panel .mat-mdc-option,
+.cdk-overlay-container .custom-select-panel .mat-mdc-list-item {
+  background-color: #0f0f0f !important;   /* desired background */
+  color: #ffffff !important;              /* ensure text is readable */
+}
+
+/* hover / active / selected states */
+.cdk-overlay-container .custom-select-panel .mat-option:hover,
+.cdk-overlay-container .custom-select-panel .mat-mdc-option:hover,
+.cdk-overlay-container .custom-select-panel .mat-option.mat-active,
+.cdk-overlay-container .custom-select-panel .mat-option.mat-selected,
+.cdk-overlay-container .custom-select-panel .mat-mdc-option.mat-mdc-option-selected {
+  background-color: #0f0f0f !important; /* darker on hover/selected */
+  color: #ffffff !important;
+}
+
+/* optionally style the panel background itself */
+.cdk-overlay-container .custom-select-panel {
+  background: rgba(11,11,11,0.98);
+  border-radius: 8px;
+  padding: 4px 0;
+}

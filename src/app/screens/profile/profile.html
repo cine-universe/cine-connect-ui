@@ -3,17 +3,18 @@
         <img [src]="userProfile.avatarUrl" alt="Profile Picture" class="profile-picture"/>
         <div class="brief">
             <h2>{{ userProfile.name }}</h2>
-            <div class="project-count">
-                <b>{{ userProfile.projectsCount }}</b>
-                <p> projects</p>
-            </div>
+            @if(userProfile.projectsCount > 0) {
+                <div class="project-count">
+                    <b>{{ userProfile.projectsCount }}</b>
+                    <p> projects</p>
+                </div>
+            }
             <p>{{ userProfile.email }}</p>
             <div class="pskill-box">
             @for(skill of userProfile.primarySkills; track skill) {
                 <p class="p-skill">{{ skill }}</p>
             }
             </div>
-            <mat-icon>share</mat-icon>
         </div>
     </div>
     <div class="profile-content">
@@ -82,7 +83,9 @@
             </div>
         } @else if(selectedCategory==='Experience') {
             <div class="exp">
-
+                <app-experience 
+                    [experiences]="userProfile?.experiences"
+                ></app-experience>
             </div>
         }
     </div>

@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="feed-categories">
+        <mat-form-field>
+            <mat-label>Feed Categories</mat-label>
+            <mat-select [(value)]="selectedCategory" (selectionChange)="onCategoryChange($event)">
+                @for(cat of categoryList; track $index) {
+                    <mat-option [value]="cat">{{ cat }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="content">
+        @for(post of posts; track $index) {
+            <app-feed-post [post]="post"></app-feed-post>
+        }
+    </div>
+    <div class="notify-section"></div>
+</div>

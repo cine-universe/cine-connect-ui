@@ -84,7 +84,9 @@
         } @else if(selectedCategory==='Experience') {
             <div class="exp">
                 <app-experience 
-                    [experiences]="userProfile?.experiences"
+                    [experiences]="experiences"
+                    (experienceUpdated)="onExperienceUpdated($event)"
+                    (experienceAdded)="onExperienceAdded($event)"
                 ></app-experience>
             </div>
         }

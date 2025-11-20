@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { AchievementForm } from '../../components/achievement-form/achievement-form';
 import { ExperienceComponent } from '../../components/experience/experience';
+import { Experience } from '../../models/Experience';
 
 @Component({
   selector: 'app-profile',
@@ -43,6 +44,8 @@ export class Profile implements OnDestroy {
 
   selectedCategory: string = 'Posts';
 
+  experiences: Experience[] = [];
+
   selectCategory(category: string) {
     this.selectedCategory = category;
   }
@@ -53,6 +56,9 @@ export class Profile implements OnDestroy {
     // Dummy user profile data
     this.userProfile = this.profileService.getUserProfile();
     this.posts = ['banner.jpg', 'baahubali.jpg'];
+    this.profileService.experience$.subscribe(exps => {
+      this.experiences = exps
+    });
   }
 
   openPost(url: string) {
@@ -195,5 +201,13 @@ export class Profile implements OnDestroy {
     this.isEditingAchievement = false;
     this.achievement = {};
     try { document.body.style.overflow = ''; } catch {}
+  }
+
+  onExperienceUpdated(updated: Experience) {
+    this.profileService.updateExperience(updated);
+  }
+
+  onExperienceAdded(added: Experience) {
+    this.profileService.addExperience(added);
   }
 }

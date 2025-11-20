@@ -1,11 +1,31 @@
 import { Injectable } from '@angular/core';
 import { UserProfile } from '../models/UserProfile';
-import { ProductionType } from '../models/Experience';
+import { Experience, ProductionType } from '../models/Experience';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProfileService {
+  
+  private experiencesSubject = new BehaviorSubject<Experience[]>([]);
+  experience$ = this.experiencesSubject.asObservable();
+
+  setExperiences(exps: Experience[]) {
+    this.experiencesSubject.next(exps);
+  }
+
+  updateExperience(updated: Experience) {
+    const current = this.experiencesSubject.value;
+    const next = current.map((e: Experience) => e.id === updated.id ? updated : e);
+    this.experiencesSubject.next(next);
+  }
+
+  addExperience(added: Experience) {
+    const current = this.experiencesSubject.value;
+    current.push(added);
+    this.experiencesSubject.next(current)
+  }
 
   getUserProfile(): UserProfile {
     let userDetails: UserProfile = {
@@ -64,6 +84,7 @@ export class ProfileService {
           }
         ]
     };
+    this.setExperiences(userDetails.experiences)
     return userDetails;
   }
 }

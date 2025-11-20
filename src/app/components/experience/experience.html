@@ -1,7 +1,7 @@
 <div class="exp-container">
     <div class="exp-header">
         <h3>Experience</h3>
-        <button><mat-icon>add</mat-icon></button>
+        <button (click)="addExperience()"><mat-icon>add</mat-icon></button>
     </div>
     <div class="experiences">
         @for(exp of experiences; track exp.id) {
@@ -24,22 +24,28 @@
                     </p>
                 </div>
                 <div class="description">
-                    <p class="desc" [class.collapsed]="!isExpanded(exp.id)">
-                    @if(!isExpanded(exp.id)) {
-                        @if(isLongDescription(exp)) {
-                            {{ getShortDescription(exp) }}
+                    @if(exp.description) {
+                        <p class="desc" [class.collapsed]="!isExpanded(exp.id)">
+                        @if(!isExpanded(exp.id)) {
+                            @if(isLongDescription(exp)) {
+                                {{ getShortDescription(exp) }}
+                            } @else {
+                                {{ exp.description }}
+                            }
                         } @else {
                             {{ exp.description }}
                         }
+                        @if(isLongDescription(exp)) {
+                            <button class="see-more" (click)="toggleExpand(exp.id)">
+                                {{ isExpanded(exp.id) ? 'See less' : 'See more' }}
+                            </button>
+                        }
+                        </p>
                     } @else {
-                        {{ exp.description }}
+                        <p [style.color]="'gray'">
+                            Describe your work in the project
+                        </p>
                     }
-                    @if(isLongDescription(exp)) {
-                        <button class="see-more" (click)="toggleExpand(exp.id)">
-                            {{ isExpanded(exp.id) ? 'See less' : 'See more' }}
-                        </button>
-                    }
-                    </p>
                 </div>
             </div>
         }

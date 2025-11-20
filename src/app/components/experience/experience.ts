@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { Experience, ProductionType } from '../../models/Experience';
+import { Experience } from '../../models/Experience';
 import { DatePipe } from '@angular/common';
 import { ExpForm } from '../exp-form/exp-form';
 import { MatDialog } from '@angular/material/dialog';
@@ -15,12 +15,11 @@ export class ExperienceComponent {
 
   readonly dialog = inject(MatDialog); 
   @Input() experiences: Experience | any;
+  @Output() experienceUpdated = new EventEmitter<Experience>();
+  @Output() experienceAdded = new EventEmitter<Experience>();
 
   // deletion state
   selectedToDelete: Experience | null = null;
-
-  constructor(
-  ) {}
 
   openExperience(id: number) {
     this.dialog.open(ExpForm, {
@@ -30,8 +29,20 @@ export class ExperienceComponent {
       backdropClass: 'custom-dialog-backdrop'
     }).afterClosed().subscribe((data) => {
       if(data != undefined && data!=null) {
-        this.experiences = this.experiences.map((e:Experience) => e.id===data.id ? data : e )
-        console.log(this.experiences)
+        this.experienceUpdated.emit(data)
+      }
+    });
+  }
+
+  addExperience() {
+    this.dialog.open(ExpForm, {
+      data: [],
+      maxHeight: '500px',
+      panelClass: 'custom-dialog-panel',
+      backdropClass: 'custom-dialog-backdrop'
+    }).afterClosed().subscribe((data) => {
+      if(data != undefined && data!=null) {
+        this.experienceAdded.emit(data)
       }
     });
   }
@@ -72,6 +83,6 @@ export class ExperienceComponent {
   }
 
   isExpanded(id: number | string) {
-  return this.expandedIds.has(id);
+    return this.expandedIds.has(id);
   }
 }

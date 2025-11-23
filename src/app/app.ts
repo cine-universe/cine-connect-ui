@@ -6,7 +6,7 @@ import { Sidenav } from './components/sidenav/sidenav';
   selector: 'app-root',
   imports: [RouterOutlet, Sidenav],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
   protected readonly title = signal('cine-connect-ui');

@@ -55,3 +55,25 @@ body {
   border-radius: 8px;
   padding: 4px 0;
 }
+
+.custom-option {
+  background-color: #1f1f1f !important;
+}
+
+.custom-option:hover {
+  background-color: #0f0f0f !important;
+}
+
+.mat-mdc-form-field .mdc-text-field--focused {
+  color: royalblue !important;
+  border-radius: 4px;
+}
+
+
+.mat-mdc-from-field .mdc-text-field--filled {
+  background-color: #1f1f1f !important;
+}
+
+.red-heart-icon {
+    color: red !important;
+}

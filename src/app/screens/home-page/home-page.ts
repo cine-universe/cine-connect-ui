@@ -14,22 +14,24 @@ import { Post } from '../../models/Post';
 })
 export class HomePage {
 
-  categories = FeedCategory;
-  selectedCategory: FeedCategory | null = null;
-
   posts: Post | any;
+
+  openings: any;
+  newMessages: any;
 
   constructor(
     private feedPostService: FeedPostService
   ) {
     this.posts = feedPostService.getPosts();
-  }
-
-  get categoryList() {
-    return Object.values(FeedCategory);
-  }
-  
-  onCategoryChange(event: MatSelectChange) {
-    this.selectedCategory = event.value
+    this.openings = [
+      {projectName: 'Bhairava', postingTime: '3 hours ago'},
+      {projectName: 'Kantara 3', postingTime: '4 hours ago'},
+      {projectName: 'Jack', postingTime: '5 hours ago'}
+    ]
+    this.newMessages =[
+      {name: 'Surya', unreadCount: 4},
+      {name: 'Prakash', unreadCount: 2},
+      {name: 'Dama', unreadCount: 1}
+    ]
   }
 }

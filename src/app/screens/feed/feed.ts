@@ -1,18 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Search } from '../../components/search/search';
 import { Jobcard } from '../../components/jobcard/jobcard';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { map, Observable, of, startWith } from 'rxjs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-feed',
   standalone: true,
-  imports: [ FormsModule, CommonModule, MatIconModule, Search, Jobcard],
+  imports: [ 
+    FormsModule, 
+    CommonModule, 
+    MatIconModule, 
+    Search,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    AsyncPipe,
+    Jobcard
+  ],
   templateUrl: './feed.html',
   styleUrls: ['./feed.scss'],
 })
-export class Feed {
+export class Feed implements OnInit {
   categories: string[] = [
     'All',
     'Action',
@@ -22,22 +37,6 @@ export class Feed {
     'Romance',
     'Sci-Fi',
     'Documentary'
-  ];
-
-  states: string[] = [
-    'Location',
-    'SKHT, AP, IND',
-    'Mumbai, MH, IND',
-    'Bangalore, KA, IND',
-    'Chennai, TN, IND',
-    'Hyderabad, TS, IND'
-  ];
-
-  roles: string[] = [
-    'Role',
-    'Hero',
-    'Editor',
-    'Villain'
   ];
 
   jobData = [
@@ -91,7 +90,7 @@ export class Feed {
   filterData = this.jobData;
 
   selectedCategory: string = 'All';
-  selectedState: string = 'Location';
+  selectedLocation: string = 'Location';
   selectedRole: string = 'Role';
 
   selectCategory(category: string): void {
@@ -104,14 +103,6 @@ export class Feed {
       // Filter jobs based on selected category
       this.filterData = this.jobData.filter(job => job.genre === category);
     }
-  }
-
-  selectState(state: string): void {
-    this.selectedState = state;
-  }
-
-  selectRole(role: string): void {
-    this.selectedRole = role;
   }
 
   onSearchChange(searchTerm: string): void {
@@ -127,16 +118,64 @@ export class Feed {
 
   applyFilters(): void {
     this.filterData = this.jobData.filter(job => {
-      const matchesState = this.selectedState ? job.location === this.selectedState : true;
+      const matchesState = this.selectedLocation ? job.location === this.selectedLocation : true;
       const matchesRole = this.selectedRole ? job.openingRoles.includes(this.selectedRole) : true;
       return matchesState && matchesRole;
     });
   }
 
   clearFilters(): void {
-    this.selectedState = 'Location';
-    this.selectedRole = 'Role';
+    this.locControl.reset('');
+    this.roleControl.reset('');
     this.filterData = this.jobData;
     this.selectedCategory = 'All';
+  }
+
+  locControl = new FormControl('');
+  roleControl = new FormControl('');
+  locs: string[] = [
+    'SKHT, AP, IND',
+    'Mumbai, MH, IND',
+    'Bangalore, KA, IND',
+    'Chennai, TN, IND',
+    'Hyderabad, TS, IND'
+  ];
+  roles: string[] = [
+    'Hero',
+    'Editor',
+    'Villain'
+  ];
+
+  locationsObservable: Observable<string[]> = of(this.locs);
+  rolesObservable: Observable<string[]> = of(this.roles);
+
+  ngOnInit() {
+    this.locationsObservable = this.locControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filterLocations(value || '')),
+    );
+
+    this.rolesObservable = this.roleControl.valueChanges.pipe(
+      startWith(this.roleControl.value || ''),
+      map(value => this._filterRoles(value || '')),
+    );
+  }
+
+  private _filterLocations(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.locs.filter(loc => loc.toLowerCase().includes(filterValue));
+  }
+
+  private _filterRoles(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.roles.filter(role => role.toLowerCase().includes(filterValue));
+  }
+
+  selectLocation(event: any): void {
+    this.selectedLocation = event.option.value;
+  }
+
+  selectRole(event: any): void {
+    this.selectedRole = event.option.value;
   }
 }

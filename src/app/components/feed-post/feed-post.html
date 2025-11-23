@@ -1,14 +1,14 @@
 <div class="container">
     <mat-card class="post-card">
         <!-- Header -->
-        <mat-card-header>
+        <mat-card-header class="header">
             <div mat-card-avatar class="avatar" [ngStyle]="{'background-image': 'url(' + post.avatarUrl + ')'}"></div>
             <mat-card-title>{{ post.title }}</mat-card-title>
-            <mat-card-subtitle>{{ post.subtitle }}</mat-card-subtitle>
+            <mat-card-subtitle class="subtitle">{{ post.subtitle }}</mat-card-subtitle>
         </mat-card-header>
 
         <!-- Media Content -->
-        <div class="media-wrapper">
+        <div class="media-wrapper" (dblclick)="incrementLikeCount()">
         @switch (post.mediaType) {
             @case ('Image') {
             <img [src]="post.mediaUrl" alt="Post image" class="media-content" />
@@ -36,38 +36,58 @@
         </div>
 
         <!-- Actions -->
-        <mat-card-actions>
-            <button mat-icon-button (click)="likePost()">
-            <mat-icon>favorite_border</mat-icon>
-            </button>
-            <button mat-icon-button>
-    <!-- The Best Svg Icon site in the world: iconSvg.co, Visit us! https://iconsvg.co -->
-    <svg id="svg" fill="#ffffff" stroke="#ffffff" width="250px" height="250px" version="1.1" viewBox="144 144 512 512" xmlns="http://www.w3.org/2000/svg">
-    <g id="IconSvg_bgCarrier" stroke-width="0"></g>
-    <g id="IconSvg_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"></g>
-     <g id="IconSvg_iconCarrier">
-      <path xmlns="http://www.w3.org/2000/svg" d="m400 573.18c-4.957 0-9.625-2.332-12.598-6.2969l-42.508-56.68h-55.105c-16.703 0-32.719-6.6367-44.531-18.445-11.809-11.809-18.445-27.828-18.445-44.531v-125.95c0-16.703 6.6367-32.719 18.445-44.531 11.812-11.809 27.828-18.445 44.531-18.445h220.42c16.703 0 32.719 6.6367 44.531 18.445 11.809 11.812 18.445 27.828 18.445 44.531v125.95c0 16.703-6.6367 32.723-18.445 44.531-11.812 11.809-27.828 18.445-44.531 18.445h-55.105l-42.508 56.68c-2.9727 3.9648-7.6406 6.2969-12.594 6.2969zm-110.21-283.39c-8.3516 0-16.359 3.3203-22.266 9.2227-5.9023 5.9062-9.2227 13.914-9.2227 22.266v125.95c0 8.3516 3.3203 16.359 9.2227 22.266 5.9062 5.9062 13.914 9.2227 22.266 9.2227h62.977c4.957 0 9.6211 2.332 12.598 6.2969l34.637 46.129 34.637-46.129c2.9727-3.9648 7.6367-6.2969 12.594-6.2969h62.977c8.3516 0 16.359-3.3164 22.266-9.2227s9.2227-13.914 9.2227-22.266v-125.95c0-8.3516-3.3164-16.359-9.2227-22.266-5.9062-5.9023-13.914-9.2227-22.266-9.2227z"/>
-
-      </g>
-      </svg>
-            </button>
-            <button mat-icon-button>
-            <mat-icon>share</mat-icon>
-            </button>
+        <mat-card-actions class="actions">
+            <div class="icon">
+                @if(post.isLiked) {
+                <button mat-icon-button (click)="likePost()">
+                    <mat-icon class="red-heart-icon">favorite</mat-icon>
+                </button>
+                } @else {
+                <button mat-icon-button (click)="likePost()">
+                    <mat-icon>favorite_border</mat-icon>
+                </button>
+                }
+                <p>{{ post.likesCount }}</p>
+            </div>
+            <div class="icon">
+                <button mat-icon-button>
+                    <mat-icon svgIcon="messaging"></mat-icon>
+                </button>
+                <p>{{ post.commentsCount }}</p>
+            </div>
+            <div class="icon">
+                <button mat-icon-button>
+                    <mat-icon svgIcon="forward"></mat-icon>
+                </button>
+                <p>{{ post.sharesCount }}</p>
+            </div>
         </mat-card-actions>
 
         <!-- Description -->
-        <mat-card-content>
-            <p>{{ post.description }}</p>
+        <mat-card-content class="description">
+            <p [class.collapsed]="!isExpanded(post.id)">
+                <b>{{ post.title }}</b>
+                @if(!isExpanded(post.id)) {
+                    @if(isLongDescription(post)) {
+                        {{ getShortDescription(post) }}
+                    } @else {
+                        {{ post.description }}
+                    }
+                } @else {
+                    {{ post.description }}
+                }
+                @if(isLongDescription(post)) {
+                    <button class="see-more" (click)="toggleExpand(post.id)">
+                        {{ isExpanded(post.id) ? 'See less' : 'See more' }}
+                    </button>
+                }
+            </p>
         </mat-card-content>
 
         <!-- Comment Input -->
-        <mat-card-content class="comment-section">
-            <mat-form-field appearance="outline" class="comment-input">
-                <mat-label>Write a comment</mat-label>
-                    <input matInput [formControl]="commentControl" />
-                </mat-form-field>
-            <button mat-raised-button color="primary" (click)="sendComment()">Send</button>
-        </mat-card-content>
+        <div class="comment-box">
+            <input type="text" placeholder="Add a comment...."/>
+            <button class="post-btn" (click)="sendComment()">comment</button>
+        </div>
     </mat-card>
 </div>

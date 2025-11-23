@@ -12,27 +12,35 @@
     <div class="openings">
         <div class="filters">
             <h2>Filters</h2>
-            <label class="custom-select" for="states">
-                <select id="states" name="options" [(ngModel)]="selectedState" (change) = "selectState($any($event.target).value)">
-                    @for(state of states; track state) {
-                        <option [value]="state">
-                            {{ state }}
-                        </option>
+            <mat-form-field>
+                <mat-label>Location</mat-label>
+                <input type="text"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="locControl"
+                    [matAutocomplete]="locAuto">
+                <mat-autocomplete autoActiveFirstOption #locAuto="matAutocomplete" (optionSelected)="selectLocation($event)">
+                    @for (loc of locationsObservable | async; track loc) {
+                        <mat-option class="custom-option" [value]="loc">{{loc}}</mat-option>
                     }
-                </select>
-            </label>
-            <label class="custom-select" for="roles">
-                <select id="roles" name="options" [(ngModel)]="selectedRole" (change) = "selectRole($any($event.target).value)">
-                    @for(role of roles; track role) {
-                        <option value="{{role}}">
-                            {{ role }}
-                        </option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <input type="text"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="roleControl"
+                    [matAutocomplete]="roleAuto">
+                <mat-autocomplete autoActiveFirstOption #roleAuto="matAutocomplete" (optionSelected)="selectRole($event)">
+                    @for (role of rolesObservable | async; track role) {
+                        <mat-option class="custom-option" [value]="role">{{role}}</mat-option>
                     }
-                </select>
-            </label>
+                </mat-autocomplete>
+            </mat-form-field>
             <div class="filter-buttons">
-                <button [disabled]="selectedState=='Location' || selectedRole=='Role'" class="applybtn" (click)="applyFilters()">apply</button>
-                <button [disabled]="selectedState=='Location' || selectedRole=='Role'" class="clearbtn" (click)="clearFilters()">clear</button>
+                <button [disabled]="selectedLocation=='' || selectedRole==''" class="primary-btn" (click)="applyFilters()">apply</button>
+                <button [disabled]="selectedLocation=='' || selectedRole==''" class="clearbtn" (click)="clearFilters()">clear</button>
             </div>
         </div>
         @if(filterData.length === 0) {

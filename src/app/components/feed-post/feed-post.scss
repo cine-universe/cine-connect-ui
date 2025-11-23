@@ -1,4 +1,10 @@
 .post-card {
+  .header {
+    .subtitle {
+      font-size: small;
+      color: gray;
+    }
+  }
   .avatar {
     background-size: cover;
     background-position: center;
@@ -11,7 +17,7 @@
   .media-wrapper {
     width: 100%;
     max-width: 550px;
-    aspect-ratio: 11 / 9; // roughly 550x450
+    aspect-ratio: 11 / auto; // roughly 550x450
     overflow: hidden;
     border-radius: 4px;
     background-color: #000;
@@ -43,8 +49,81 @@
     align-items: center;
     gap: 0.5rem;
     margin-top: 1rem;
+
   }
-  .comment-input {
-    flex: 1;
+  .actions {
+    background-color: #1f1f1f;
+    display: flex;
+    justify-content: space-between;
+    .icon {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      gap: 0px;
+      p {
+        margin: 0;
+        padding: 0;
+        font-size: small;
+      }
+    }
+  }
+  .description {
+    background-color: #1f1f1f;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    b, p{
+      margin: 0;
+      padding: 0;
+      font-size: small;
+      max-width: 500px;
+      margin-left: 5px;
+    }
+    .desc {
+      margin: 0;
+      color: #dcdcdc;
+      line-height: 1.4;
+      transition: max-height 0.18s ease, color 0.12s ease;
+
+      /* collapsed -> single-line ellipsis */
+      &.collapsed {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* when expanded allow multi-line (no ellipsis) */
+      &:not(.collapsed) {
+        white-space: normal;
+      }
+    }
+    .see-more {
+      font-size: x-small;
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+  .comment-box {
+    display: flex;
+    
+    input {
+      background: none;
+      border: none;
+      outline: none;
+      background-color: #1f1f1f;
+      border-radius: 0px 0px 0px 4px;
+      padding: 10px;
+      flex: 1;
+      font-size: small;
+    }
+
+    .post-btn {
+      border-radius: 0px 0px 4px 0px;
+      background-color: #1f1f1f;
+      padding: 20px;
+    }
   }
 }

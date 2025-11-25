@@ -32,7 +32,7 @@ export class ProfileService {
       id: 1,
       name: 'SS Rajamouli',
       email: 'ss.rajamouli@gmail.com',
-      avatarUrl: 'banner.jpg',
+      avatarUrl: 'assets/profile-2.png',
       primarySkills: ['Director'],
       skills: ['Direction', 'Writing', 'Fighting'],
       projectsCount: 0,

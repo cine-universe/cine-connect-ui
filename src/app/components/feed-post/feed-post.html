@@ -50,7 +50,7 @@
                 <p>{{ post.likesCount }}</p>
             </div>
             <div class="icon">
-                <button mat-icon-button>
+                <button mat-icon-button (click)="commentInput.focus()">
                     <mat-icon svgIcon="messaging"></mat-icon>
                 </button>
                 <p>{{ post.commentsCount }}</p>
@@ -82,11 +82,12 @@
                     </button>
                 }
             </p>
+            <p class="timestamp">{{ post.timestamp | timeAgo }}</p>
         </mat-card-content>
 
         <!-- Comment Input -->
         <div class="comment-box">
-            <input type="text" placeholder="Add a comment...."/>
+            <input #commentInput type="text" placeholder="Add a comment...."/>
             <button class="post-btn" (click)="sendComment()">comment</button>
         </div>
     </mat-card>

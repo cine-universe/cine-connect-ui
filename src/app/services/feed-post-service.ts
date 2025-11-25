@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MediaType, Post } from '../models/Post';
+import { timestamp } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class FeedPostService {
     let posts = [{
         id: 1,
         userId: 1,
-        avatarUrl: 'banner.jpg',
+        avatarUrl: 'assets/profile-pic.png',
         title : 'Rajamouli',
         subtitle : 'Varanasi',
         mediaType: MediaType.Image,
@@ -20,12 +21,13 @@ export class FeedPostService {
         likesCount: 120,
         commentsCount: 250,
         sharesCount: 25,
-        isLiked: false
+        isLiked: false,
+        timestamp: new Date('2025-11-24T10:30:00')
       }, {
         id: 2,
         userId: 1,
-        avatarUrl: 'banner.jpg',
-        title : 'Trivikram',
+        avatarUrl: 'assets/girl-profile.jpg',
+        title : 'Ayisha',
         subtitle : 'Baahubali The Epic',
         mediaType: MediaType.Image,
         mediaUrl : 'baahubali.jpg',
@@ -34,11 +36,12 @@ export class FeedPostService {
         likesCount: 23461,
         commentsCount: 45632,
         sharesCount: 453,
-        isLiked: false
+        isLiked: false,
+        timestamp: new Date('2024-06-20T10:30:00')
       }, {
         id: 3,
         userId: 1,
-        avatarUrl: 'banner.jpg',
+        avatarUrl: 'assets/profile-2.png',
         title : 'Trivikram',
         subtitle : 'Baahubali The Epic',
         mediaType: MediaType.Youtube,
@@ -48,7 +51,23 @@ export class FeedPostService {
         likesCount: 13,
         commentsCount: 4,
         sharesCount: 2,
-        isLiked: false
+        isLiked: false,
+        timestamp: new Date('2025-11-25T08:30:00')
+      }, {
+        id: 4,
+        userId: 1,
+        avatarUrl: 'banner.jpg',
+        title : 'FondMan',
+        subtitle : 'Tears of Steel',
+        mediaType: MediaType.Video,
+        mediaUrl : 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4',
+        articleText : '',
+        description : 'Tears of Steel is a short science fiction film by the Blender Institute, part of the Blender Foundation. It was made using open source software, primarily Blender, and released in 2012 to showcase the capabilities of open source tools in producing high-quality visual effects and animation.',
+        likesCount: 132,
+        commentsCount: 32,
+        sharesCount: 1,
+        isLiked: false,
+        timestamp: new Date('2025-06-20T10:30:00')
       }, 
     ]
 

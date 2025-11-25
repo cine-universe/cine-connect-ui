@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { Post } from '../../models/Post';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { IconsService } from '../../services/icons-service';
+import { TimeAgoPipe } from '../../pipes/TimeAgoPipe';
 
 @Component({
   selector: 'app-feed-post',
@@ -18,6 +19,7 @@ import { IconsService } from '../../services/icons-service';
     MatCardModule, 
     MatFormFieldModule,
     MatIconModule,
+    TimeAgoPipe,
     MatButtonModule],
   templateUrl: './feed-post.html',
   styleUrl: './feed-post.scss',

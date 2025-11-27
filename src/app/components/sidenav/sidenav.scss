@@ -126,7 +126,7 @@
     #000000 100%
   );
   backdrop-filter: blur(6px);
-
+  transition: transform 0.3s ease-in-out;
 
   ul {
     width: 100%;

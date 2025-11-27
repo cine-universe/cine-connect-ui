@@ -7,6 +7,7 @@ import { Post } from '../../models/Post';
 import { HomeProfile } from '../../components/home-profile/home-profile';
 import { RouterModule } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
+import { MobileHeader } from '../../components/mobile-header/mobile-header';
 
 @Component({
   selector: 'app-home-page',
@@ -16,7 +17,8 @@ import { MatIcon } from '@angular/material/icon';
     MatFormFieldModule, 
     MatSelectModule, 
     FeedPost, 
-    HomeProfile],
+    HomeProfile,
+    MobileHeader],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',
 })

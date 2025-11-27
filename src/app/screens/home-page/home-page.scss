@@ -10,9 +10,6 @@
         bottom: 20px;
         right: 20px;
         z-index: 1000;
-        background-color: royalblue;
-        border: none;
-        border-radius: 100%;
         mat-icon {
             color: white !important;
             margin: 5px;
@@ -109,8 +106,21 @@
         flex-direction: column;
         margin: 0;
         padding: 0;
+        .content {
+            padding-top: 60px;
+            gap: 20px;
+        }
         .notify-section {
             display: none;
         }
+        .scroll-top-btn {
+            display: none;
+        }
+    }
+}
+
+@media (min-width: 550px) {
+    app-mobile-header {
+        display: none;
     }
 }

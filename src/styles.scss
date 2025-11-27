@@ -77,3 +77,7 @@ body {
 .red-heart-icon {
     color: red !important;
 }
+
+.nav-hidden {
+  transform: translateY(99%); /* Moves the nav fully out of view */
+}

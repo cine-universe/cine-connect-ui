@@ -1,0 +1,39 @@
+<div class="mobile-header">
+    <img src="logo.png" alt="logo" class="logo">
+    <h2>CineConnect</h2>
+    <img [src]="profilePic" alt="dp" (click)="openMobileMenu()">
+</div>
+
+@if(mobileMenuOpen) {
+    <div class="drawer-backdrop" (click)="closeMobileMenu()"></div>
+    <aside class="mobile-drawer" role="dialog" aria-modal="true">
+        <div class="drawer-header">
+            <h3>Menu</h3>
+            <button class="close" aria-label="Close drawer" (click)="closeMobileMenu()">✕</button>
+        </div>
+
+        <nav class="drawer-list">
+            <a class="drawer-item" (click)="navigateToProfile(); closeMobileMenu()">
+                <span>Profile</span>
+            </a>
+
+            <a class="drawer-item" routerLink="/notifications" (click)="closeMobileMenu()">
+                <span>Notifications</span>
+                @if(unreadNotificationsCount > 0) {
+                    <span class="badge">
+                        {{ unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount }}
+                    </span>
+                }
+            </a>
+
+            <a class="drawer-item" routerLink="/messages" (click)="navigateToMessages(); closeMobileMenu()">
+                <span>Messages</span>
+                @if(unreadMessagesCount > 0) {
+                    <span class="badge">
+                        {{ unreadMessagesCount > 99 ? '99+' : unreadMessagesCount }}
+                    </span>
+                }
+            </a>
+        </nav>
+    </aside>
+}

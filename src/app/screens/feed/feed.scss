@@ -112,3 +112,27 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .feed {
+        margin-top: 60px;
+        margin-left: 0;
+        padding: 10px;
+
+        .openings {
+            grid-template-columns: 1fr;
+
+            .filters {
+                flex-direction: row;
+                overflow-x: auto;
+                gap: 8px;
+            }
+        }
+    }
+}
+
+@media (min-width: 480px) {
+    app-mobile-header {
+        display: none;
+    }
+}

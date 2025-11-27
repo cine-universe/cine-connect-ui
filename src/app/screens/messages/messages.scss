@@ -69,3 +69,40 @@
 
     }
 }
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        margin-top: 60px;
+        padding: 10px;
+
+        .categories {
+            width: 100%;
+            gap: 20px;
+            overflow-x: auto;
+        }
+
+        .messages-content {
+            width: 100%;
+            flex-direction: column;
+
+            .message-list {
+                width: 100%;
+                height: auto;
+                margin-bottom: 20px;
+            }
+
+            .message-box {
+                width: 100%;
+                margin-left: 0;
+                height: auto;
+            }
+        }
+    }   
+}
+
+@media (min-width: 550px) {
+    app-mobile-header {
+        display: none;
+    }
+}

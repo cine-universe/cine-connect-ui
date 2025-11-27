@@ -406,3 +406,32 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .profile-container {
+        margin-left: 0px;
+        grid-template-columns: 1fr;
+
+        .profile-left {
+            margin: 20px;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+
+            .brief {
+                margin-top: 0px;
+            }
+        }
+
+        .profile-content {
+            margin: 20px 10px 10px 10px;
+            height: fit-content;
+        }
+    }
+}
+
+@media (min-width: 550px) {
+    app-mobile-header {
+        display: none;
+    }
+}

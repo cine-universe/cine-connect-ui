@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { AchievementForm } from '../../components/achievement-form/achievement-form';
 import { ExperienceComponent } from '../../components/experience/experience';
 import { Experience } from '../../models/Experience';
+import { MobileHeader } from '../../components/mobile-header/mobile-header';
 
 @Component({
   selector: 'app-profile',
-  imports: [MatIconModule, FormsModule, AchievementForm, ExperienceComponent],
+  imports: [MatIconModule, FormsModule, AchievementForm, ExperienceComponent, MobileHeader],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
 })

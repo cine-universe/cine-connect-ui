@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Messagelist } from '../../components/messagelist/messagelist';
 import { Messagebox } from '../../components/messagebox/messagebox';
+import { MobileHeader } from '../../components/mobile-header/mobile-header';
 
 @Component({
   selector: 'app-messages',
-  imports: [Messagelist, Messagebox],
+  imports: [Messagelist, Messagebox, MobileHeader],
   templateUrl: './messages.html',
   styleUrl: './messages.scss',
 })

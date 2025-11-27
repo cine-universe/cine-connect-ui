@@ -8,6 +8,7 @@ import { map, Observable, of, startWith } from 'rxjs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MobileHeader } from '../../components/mobile-header/mobile-header';
 
 @Component({
   selector: 'app-feed',
@@ -22,7 +23,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    Jobcard
+    Jobcard,
+    MobileHeader
   ],
   templateUrl: './feed.html',
   styleUrls: ['./feed.scss'],

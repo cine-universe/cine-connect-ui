@@ -134,3 +134,25 @@
         }
     }
 }
+
+@media (max-width: 768px) {
+    .exp-container {
+        margin: 0px;
+        padding: 0px;
+        max-width: 360px;
+
+        .exp-header {
+            display: none;
+        }
+
+        // .experiences {
+        //     .experience {
+        //         .meta {
+        //             flex-direction: column;
+        //             align-items: flex-start;
+        //             gap: 10px;
+        //         }
+        //     }
+        // }
+    }
+}

@@ -11,7 +11,7 @@ export class FeedPostService {
     let posts = [{
         id: 1,
         userId: 1,
-        avatarUrl: 'assets/profile-pic.png',
+        avatarUrl: 'assets/cyber-punk.jpg',
         title : 'Rajamouli',
         subtitle : 'Varanasi',
         mediaType: MediaType.Image,
@@ -26,8 +26,8 @@ export class FeedPostService {
       }, {
         id: 2,
         userId: 1,
-        avatarUrl: 'assets/girl-profile.jpg',
-        title : 'Ayisha',
+        avatarUrl: 'assets/cyber-punk.jpg',
+        title : 'Prabhas',
         subtitle : 'Baahubali The Epic',
         mediaType: MediaType.Image,
         mediaUrl : 'baahubali.jpg',
@@ -41,9 +41,9 @@ export class FeedPostService {
       }, {
         id: 3,
         userId: 1,
-        avatarUrl: 'assets/profile-2.png',
-        title : 'Trivikram',
-        subtitle : 'Baahubali The Epic',
+        avatarUrl: 'assets/cyber-punk.jpg',
+        title : 'Steven Spielberg',
+        subtitle : 'Venom Last Dance',
         mediaType: MediaType.Youtube,
         mediaUrl : 'https://www.youtube.com/embed/MPeSGPUFdto?si=IR3wGcSK2B5aokwm',
         articleText : '',
@@ -56,7 +56,7 @@ export class FeedPostService {
       }, {
         id: 4,
         userId: 1,
-        avatarUrl: 'banner.jpg',
+        avatarUrl: 'assets/cyber-punk.jpg',
         title : 'FondMan',
         subtitle : 'Tears of Steel',
         mediaType: MediaType.Video,

@@ -56,7 +56,7 @@ export class Profile implements OnDestroy {
   ngOnInit() {
     // Dummy user profile data
     this.userProfile = this.profileService.getUserProfile();
-    this.posts = ['banner.jpg', 'baahubali.jpg'];
+    this.posts = ['baahubali.jpg'];
     this.profileService.experience$.subscribe(exps => {
       this.experiences = exps
     });

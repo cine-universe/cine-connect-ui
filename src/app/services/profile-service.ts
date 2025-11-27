@@ -10,6 +10,10 @@ export class ProfileService {
   
   private experiencesSubject = new BehaviorSubject<Experience[]>([]);
   experience$ = this.experiencesSubject.asObservable();
+  userProfile: UserProfile | any;
+  constructor() {
+    this.userProfile = this.getUserProfile(); 
+  }
 
   setExperiences(exps: Experience[]) {
     this.experiencesSubject.next(exps);
@@ -28,15 +32,16 @@ export class ProfileService {
   }
 
   getUserProfile(): UserProfile {
-    let userDetails: UserProfile = {
+    this.userProfile = {
       id: 1,
       name: 'SS Rajamouli',
       email: 'ss.rajamouli@gmail.com',
-      avatarUrl: 'assets/profile-2.png',
+      avatarUrl: 'assets/cyber-punk.jpg',
       primarySkills: ['Director'],
       skills: ['Direction', 'Writing', 'Fighting'],
       projectsCount: 0,
       bio: '',
+      links: 254,
       achievements: [{
         id: 1,
         userId: 1,
@@ -84,7 +89,17 @@ export class ProfileService {
           }
         ]
     };
-    this.setExperiences(userDetails.experiences)
-    return userDetails;
+    this.setExperiences(this.userProfile.experiences)
+    return this.userProfile;
+  }
+
+  getHomeProfile() {
+    let homeProfile = {
+      id: this.userProfile.id,
+      name: this.userProfile.name,
+      avatarUrl: this.userProfile.avatarUrl,
+      links: this.userProfile.links,
+    };
+    return homeProfile;
   }
 }

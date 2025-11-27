@@ -5,6 +5,20 @@
     padding: 20px;
     justify-content: center;
 
+    .scroll-top-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        background-color: royalblue;
+        border: none;
+        border-radius: 100%;
+        mat-icon {
+            color: white !important;
+            margin: 5px;
+        }
+    }
+
     .content {
         display: flex;
         flex-direction: column;
@@ -20,6 +34,23 @@
         flex-direction: column;
         border-radius: 4px;
 
+        .see-more {
+            background-color: #0f0f0f;
+            display: flex;
+            width: 100%;
+            a {
+                text-decoration: none;
+                color: lightblue;
+                padding: 10px;
+            }
+        }
+
+        .openings-section {
+            h3 {
+                margin-top: 0px;
+            }
+        }
+        
         .opening {
             display: flex;
             flex-direction: column;
@@ -57,15 +88,29 @@
 
             p {
                 padding: 5px;
-                color: white;
-                background-color: red;
-                border-radius: 4px;
+                color: royalblue;
+                background: none;
+                border: none;
                 font-size: medium;
             }
 
             &:hover {
                 background-color: rgb(60, 58, 58);
             }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        display: none;
+    }
+    .container {
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+        .notify-section {
+            display: none;
         }
     }
 }

@@ -1,4 +1,7 @@
 <div class="container">
+    <div class="profile-content">
+        <app-home-profile></app-home-profile>
+    </div>
     <div class="content">
         @for(post of posts; track $index) {
             <app-feed-post [post]="post"></app-feed-post>
@@ -13,15 +16,35 @@
                     <p>{{ opening.postingTime }}</p>
                 </div>
             }
+            <div class="see-more">
+                <a routerLink="/feed" routerLinkActive="active">See more</a>
+            </div>
         </div>
         <div class="messages-section">
             <h3>Messages</h3>
             @for(msg of newMessages; track $index) {
                 <div class="message">
                     <h4>{{ msg.name }}</h4>
-                    <p>{{ msg.unreadCount }}</p>
+                    @if(msg.unreadCount > 10) {
+                        <p> 10+ </p>
+                    } @else {
+                        <p>{{ msg.unreadCount }}</p>
+                    }
                 </div>
             }
+            <div class="see-more">
+                <a routerLink="/messages" routerLinkActive="active">See more</a>
+            </div>
         </div>
     </div>
+    @if(showScrollTop) {
+        <button
+            mat-fab
+            color="primary"
+            class="scroll-top-btn"
+            (click)="scrollToTop()"
+        >
+            <mat-icon>arrow_upward</mat-icon>
+        </button>
+    }
 </div>

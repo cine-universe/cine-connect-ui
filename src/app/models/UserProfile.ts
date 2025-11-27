@@ -10,6 +10,7 @@ export interface UserProfile {
   skills: string[];
   projectsCount: number;
   bio: string;
+  links: number;
   achievements: Achievements[];
   experiences: Experience[];
 }

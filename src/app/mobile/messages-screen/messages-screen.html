@@ -1,6 +1,6 @@
-<app-mobile-header></app-mobile-header>
-<div class="mobile">
-    @if(!messageChosen) {
+@if(!messageChosen) {
+    <div class="mobile">
+        <app-mobile-header></app-mobile-header>
         <div class="categories">
             @for(cat of categories; track cat) {
                 <button [class.active]="cat === selectedCategory" (click)="selectCategory(cat)">
@@ -18,12 +18,12 @@
                 </app-messagelist>
             </div>
         </div>
-    }@else {
-        <div class="message-box">
-            <app-messagebox 
-                [message]="selectedMessage"
-                (back)="messageChosen=false"
-            ></app-messagebox>
-        </div>
-    }
-</div>
+    </div>
+}@else {
+    <div class="message-box">
+        <app-messagebox 
+            [message]="selectedMessage"
+            (back)="messageChosen=false"
+        ></app-messagebox>
+    </div>
+}

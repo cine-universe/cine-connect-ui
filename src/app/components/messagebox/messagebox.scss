@@ -1,11 +1,12 @@
 .container {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-rows: 1fr 8fr 1fr;
+    display: flex;
+    flex-direction: column;
 
     .msg-header {
         padding: 10px;
+        height: 8vh;
         background-color: royalblue;
         border-bottom: 1px solid #333;
         display: flex;
@@ -45,6 +46,7 @@
 
     .msg-body {
         padding: 12px;
+        height: 70vh;
         background: #0f0f0f;
         overflow-y: auto;
         display: flex;

@@ -1,0 +1,64 @@
+.container {
+    margin: 0;
+    padding: 10px;
+    background-color: #0f0f0f;
+    border-radius: 4px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .achievements {
+        p {
+            color: #dcdcdc;
+            line-height: 1.4;
+            font-size: 14px;
+        }
+        .achievement-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px 0px 15px 0px;
+            .title {
+                h4, i {
+                    margin: 0;
+                    padding: 0;
+                }
+                i {
+                    font-size: small;
+                    color: gray;
+                }
+                .year {
+                    font-weight: normal;
+                    font-size: x-small;
+                    color: gray;
+                }
+            }
+            .action-btn {
+                display: flex;
+                justify-content: space-between;
+                a {
+                    text-decoration: none;
+                }
+                strong {
+                    font-size: small;
+                    color: royalblue;
+                }
+                mat-icon {
+                    font-size: medium;
+                }
+            }
+            
+            &:hover {
+                cursor: pointer;
+                background-color: #000000;
+            }
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #333;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="header">
+        <h3>Achievements</h3>
+        <button (click)="addAchievement()">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <div class="achievements">
+        @if(userAchievements.length===0) {
+            <p>No achievements added yet. Click the + button to add achievement.</p>
+        } @else {
+            @for(achievement of userAchievements; track achievement.id) {
+                <div class="achievement-card">
+                    <div class="title">
+                        <h4 (click)="openAchievement(achievement)">{{ achievement.category }} <span class="year">{{ achievement.year }}</span></h4>
+                        <i>{{ achievement.event }} - {{ achievement.eventLocation }}</i>
+                    </div>
+                    <div class="action-btn">
+                        <a href="{{ achievement.verificationLink }}" target="_blank">
+                            <strong>{{ achievement.filmTitle }}</strong>
+                        </a>
+                        <button 
+                            matTooltip="delete"
+                            (click)="deleteAchievement(achievement)"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+            }
+        }
+    </div>
+</div>

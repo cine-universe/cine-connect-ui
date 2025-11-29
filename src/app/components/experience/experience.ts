@@ -4,10 +4,12 @@ import { Experience } from '../../models/Experience';
 import { DatePipe } from '@angular/common';
 import { ExpForm } from '../exp-form/exp-form';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialog } from '../delete-dialog/delete-dialog';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-experience',
-  imports: [MatIconModule, DatePipe],
+  imports: [MatIconModule, DatePipe, MatTooltipModule],
   templateUrl: './experience.html',
   styleUrl: './experience.scss',
 })
@@ -17,9 +19,7 @@ export class ExperienceComponent {
   @Input() experiences: Experience | any;
   @Output() experienceUpdated = new EventEmitter<Experience>();
   @Output() experienceAdded = new EventEmitter<Experience>();
-
-  // deletion state
-  selectedToDelete: Experience | null = null;
+  @Output() experienceDeleted = new EventEmitter<number>();
 
   openExperience(id: number) {
     this.dialog.open(ExpForm, {
@@ -47,21 +47,17 @@ export class ExperienceComponent {
     });
   }
 
-  openDelete(exp: Experience) {
-    this.selectedToDelete = exp;
-    try { document.body.style.overflow = 'hidden'; } catch {}
-  }
-
-  confirmDelete() {
-    if (!this.selectedToDelete) return;
-    this.experiences = this.experiences.filter((e: Experience) => e.id !== this.selectedToDelete!.id);
-    this.selectedToDelete = null;
-    try { document.body.style.overflow = ''; } catch {}
-  }
-
-  cancelDelete() {
-    this.selectedToDelete = null;
-    try { document.body.style.overflow = ''; } catch {}
+  deleteExperience(experience: Experience) {
+    this.dialog.open(DeleteDialog, {
+      data: {
+        category: 'experience',
+        name: experience.projectTitle
+      }
+    }).afterClosed().subscribe((result) => {
+      if(result) {
+        this.experienceDeleted.emit(experience.id);
+      }
+    })
   }
 
   expandedIds = new Set<number | string>();

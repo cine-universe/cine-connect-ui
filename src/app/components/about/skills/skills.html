@@ -1,0 +1,20 @@
+<div class="skills">
+    <div class="skill-header">
+        <h3>Skills</h3>
+        <div class="skill-action-btns">
+            <button (click)="addSkill()"><mat-icon class="edit">add</mat-icon></button>
+        </div>
+    </div>
+    <div class="skill-box">
+        @if(userSkills.length === 0) {
+            <p>No skills added yet. Click the + button to add skills.</p>
+        } @else {
+            @for(skill of userSkills; track $index) {
+                <div class="skill-chip">
+                    <p>{{ skill }}</p>
+                    <button (click)="deleteSkill($index, skill)"><mat-icon class="edit">delete</mat-icon></button>
+                </div>
+            }
+        }
+    </div>
+</div>

@@ -1,0 +1,17 @@
+<div class="description">
+    <div class="desc-header">
+        <h3>Description</h3>
+        <button (click)="openDescription()"><mat-icon class="edit">edit</mat-icon></button>
+    </div>
+    <p
+        #descText
+        class="desc-text"
+        [class.clamped]="!expanded"
+        aria-expanded="{{ expanded }}"
+    >{{ description || 'No bio provided. Tell people about yourself — experience, interests, recent projects.' }}</p>
+    @if(hasOverflow) {
+        <button class="see-more-btn" (click)="toggleExpand()" aria-label="Toggle description">
+            {{ expanded ? 'See less' : 'See more' }}
+        </button>
+    }
+</div>

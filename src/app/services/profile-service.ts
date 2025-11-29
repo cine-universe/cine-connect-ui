@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserProfile } from '../models/UserProfile';
 import { Experience, ProductionType } from '../models/Experience';
 import { BehaviorSubject } from 'rxjs';
+import { Achievements } from '../models/Achievements';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +11,13 @@ export class ProfileService {
   
   private experiencesSubject = new BehaviorSubject<Experience[]>([]);
   experience$ = this.experiencesSubject.asObservable();
+
+  private descriptionSubject = new BehaviorSubject<string>('');
+  description$ = this.descriptionSubject.asObservable();
+
+  private achievementSubject = new BehaviorSubject<Achievements[]>([]);
+  achivement$ = this.achievementSubject.asObservable();
+
   userProfile: UserProfile | any;
   constructor() {
     this.userProfile = this.getUserProfile(); 
@@ -31,6 +39,38 @@ export class ProfileService {
     this.experiencesSubject.next(current)
   }
 
+  deleteExperience(index: number) {
+    const current = this.experiencesSubject.value
+    const next = current.filter((a: Experience) => a.id !== index);
+    this.experiencesSubject.next(next);
+  }
+
+  updateDescription(desc: string) {
+    this.descriptionSubject.next(desc);
+  }
+
+  setAchievements(achievements: Achievements[]) {
+    this.achievementSubject.next(achievements);
+  }
+
+  updateAchievement(updated: Achievements) {
+    const current = this.achievementSubject.value;
+    const next = current.map((a: Achievements) => a.id === updated.id ? updated : a);
+    this.achievementSubject.next(next);
+  }
+
+  addAchievement(added: Achievements) {
+    const current = this.achievementSubject.value;
+    current.push({...added, id: 4, userId: this.userProfile.userId});
+    this.achievementSubject.next(current);
+  }
+
+  deleteAchievement(index: number) {
+    const current = this.achievementSubject.value
+    const next = current.filter((a: Achievements) => a.id !== index);
+    this.achievementSubject.next(next);
+  }
+
   getUserProfile(): UserProfile {
     this.userProfile = {
       id: 1,
@@ -42,14 +82,7 @@ export class ProfileService {
       projectsCount: 0,
       bio: '',
       links: 254,
-      achievements: [{
-        id: 1,
-        userId: 1,
-        award: 'Steller',
-        category: 'Editing',
-        year: 2024,
-        event: 'SIMA 2024'
-      }],
+      achievements: this.getAchievements(),
       experiences: [
           {
             id: 1,
@@ -89,7 +122,9 @@ export class ProfileService {
           }
         ]
     };
-    this.setExperiences(this.userProfile.experiences)
+    this.setExperiences(this.userProfile.experiences);
+    this.updateDescription(this.userProfile.bio || '');
+    this.setAchievements(this.userProfile.achievements);
     return this.userProfile;
   }
 
@@ -101,5 +136,33 @@ export class ProfileService {
       links: this.userProfile.links,
     };
     return homeProfile;
+  }
+
+  getAchievements() {
+    const achievement: Achievements[] = [{
+      id: 1,
+      userId: 1,
+      filmTitle: 'RRR',
+      year: 2024,
+      category: 'Best Director',
+      event: 'Academy Awards (Oscars)',
+      eventLocation: 'Dallas, USA',
+      verificationLink: 'https://simaawards.com/2024/winners',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }, {
+      id: 2,
+      userId: 1,
+      filmTitle: 'Baahubali 2',
+      year: 2018,
+      category: 'Best Director',
+      event: 'South Indian International Movie Awards',
+      eventLocation: 'Hyderabad, IN',
+      verificationLink: 'https://simaawards.com/2018/winners',
+      createdAt: new Date(),
+      updatedAt: new Date()
+    }
+    ];
+    return achievement;
   }
 }

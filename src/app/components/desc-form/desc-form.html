@@ -1,0 +1,14 @@
+<div class="container">
+    <button class="close" aria-label="Close" (click)="onCancel()">✕</button>
+    <form [formGroup]="descForm" (submit)="onSubmit()" class="form-container">
+        <mat-form-field appearance="fill">
+            <textarea class="desc-input" matInput formControlName="description" [placeholder]="descriptionHeading" maxlength="{{ maxLength }}"></textarea>
+        </mat-form-field>
+        <div class="dialog-actions">
+            <p>{{ charCount }}/{{ maxLength }}</p>
+            <button class="primary-btn" type="submit" [disabled]="descForm.invalid">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

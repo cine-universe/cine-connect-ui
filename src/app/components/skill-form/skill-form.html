@@ -1,0 +1,26 @@
+<form class="container" (submit)="onSubmit()" autocomplete="off">
+    <p>Add a skill</p>
+    <button class="close" aria-label="Close" (click)="onCancel()">✕</button>
+    <mat-form-field>
+        <mat-label>Skill</mat-label>
+        <input 
+            matInput 
+            type="text" 
+            [formControl]="skillControl" 
+            [matAutocomplete]="auto" >
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="skillSelected($event)">
+            @for(option of filteredSkills | async; track option) {
+                <mat-option class="custom-option" [value]="option">
+                    {{ option }}
+                </mat-option>
+            }  
+        </mat-autocomplete>
+
+        @if(skillControl.hasError('duplicate')) {
+            <mat-error>
+                <b>Already Added</b>
+            </mat-error>
+        }
+    </mat-form-field>
+    <button type="submit" class="primary-btn">Add</button>
+</form>

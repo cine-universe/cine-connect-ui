@@ -1,29 +1,60 @@
-<div class="ach-header">
-    <h3>Achievement</h3>
-    <button class="modal-close" aria-label="Close" (click)="onCancel()">✕</button>
+<div class="container">
+  <button class="common-btn" (click)="onClose()"><mat-icon>close</mat-icon></button>
+  <form [formGroup]="achForm" (submit)="onSubmit()">
+    <h2>Achievement</h2>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <input 
+        matInput 
+        type="text"
+        formControlName="category">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Year</mat-label>
+      <input 
+        matInput 
+        type="number"
+        formControlName="year">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Event Name</mat-label>
+      <input 
+        matInput 
+        type="text"
+        formControlName="event">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Event Location</mat-label>
+      <input 
+        matInput 
+        type="text"
+        formControlName="eventLocation">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Film Title</mat-label>
+      <input 
+        matInput 
+        type="text"
+        formControlName="filmTitle">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Verify Link</mat-label>
+      <input 
+        matInput 
+        type="text"
+        formControlName="verificationLink"
+        required>
+    </mat-form-field>
+
+    <div class="action-btn">
+      <button class="primary-btn" type="submit">
+        Save
+      </button>
+    </div>
+  </form>
 </div>
-<form [formGroup]="awardForm" (submit)="onSubmit()" class="form-container">
-  <mat-form-field appearance="fill">
-    <mat-label>Award</mat-label>
-    <input matInput formControlName="award" placeholder="e.g. Oscar">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Year</mat-label>
-    <input matInput formControlName="year" placeholder="e.g. 2024" type="number" min="1947" max="2050">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Event Name</mat-label>
-    <input matInput formControlName="event" placeholder="e.g. SIIMA">
-  </mat-form-field>
-
-  <mat-form-field appearance="fill">
-    <mat-label>Category</mat-label>
-    <input matInput formControlName="category" placeholder="e.g. Best Actor">
-  </mat-form-field>
-
-  <button class="primary-btn" color="primary" type="submit" [disabled]="awardForm.invalid">
-    Submit
-  </button>
-</form>

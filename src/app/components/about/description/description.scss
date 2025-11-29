@@ -1,0 +1,45 @@
+.description {
+    margin-top: 5px;
+    background-color: #0b0b0b;
+    border-radius: 4px;
+    padding: 10px;
+    
+    .desc-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .desc-text {
+        margin: 8px 0 0 0;
+        color: #dcdcdc;
+        line-height: 1.4;
+        font-size: 14px;
+        transition: max-height 0.18s ease;
+
+        // two-line clamp when not expanded
+        &.clamped {
+            display: -webkit-box;
+            line-clamp: 2;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            white-space: normal;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .see-more-btn {
+        background: transparent;
+        border: none;
+        color: royalblue;
+        cursor: pointer;
+        font-size: 13px;
+    }
+
+    // ensure responsive behavior: line-clamp already respects width; adjust font on small screens
+    @media (max-width: 420px) {
+        .desc-text { font-size: 13px; line-height: 1.35; }
+        .see-more-btn { font-size: 12px; }
+    }
+}

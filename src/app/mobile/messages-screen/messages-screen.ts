@@ -1,19 +1,19 @@
 import { Component } from '@angular/core';
 import { Messagelist } from '../../components/messagelist/messagelist';
 import { Messagebox } from '../../components/messagebox/messagebox';
-import { MessagesScreen } from '../../mobile/messages-screen/messages-screen';
+import { MobileHeader } from '../../components/mobile-header/mobile-header';
 
 @Component({
-  selector: 'app-messages',
+  selector: 'app-messages-screen',
   imports: [
     Messagelist, 
     Messagebox,
-    MessagesScreen
+    MobileHeader
   ],
-  templateUrl: './messages.html',
-  styleUrl: './messages.scss',
+  templateUrl: './messages-screen.html',
+  styleUrl: './messages-screen.scss',
 })
-export class Messages {
+export class MessagesScreen {
   categories: string[] = [
     'All',
     'Unread',
@@ -21,6 +21,7 @@ export class Messages {
     'Archived'
   ];
 
+  messageChosen = false;
   selectedMessage: any;
 
   selectedCategory: string = 'All';
@@ -43,5 +44,6 @@ export class Messages {
 
   messageSelected(message: any): void {
     this.selectedMessage = message;
+    this.messageChosen = true;
   }
 }

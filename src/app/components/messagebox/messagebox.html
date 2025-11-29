@@ -1,6 +1,9 @@
 <div class="container" *ngIf="message!=null && message!==undefined">
     <div class="msg-header">
-        <img src="banner.jpg" alt="dp">
+        <button class="back-btn" (click)="trigger()">
+            <mat-icon>arrow_left_alt</mat-icon>
+        </button>
+        <img src="assets/cyber-punk.jpg" alt="dp">
         <div class="msg-header-info">
             <h3>{{ message?.sender || 'Conversation' }}</h3>
             <p>{{ message?.time }}</p>

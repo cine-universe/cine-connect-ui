@@ -1,10 +1,9 @@
-<app-mobile-header></app-mobile-header>
 <div class="container">
     <div class="categories">
         @for(cat of categories; track cat) {
-        <button [class.active]="cat === selectedCategory" (click)="selectCategory(cat)">
-            {{ cat }}
-        </button>
+            <button [class.active]="cat === selectedCategory" (click)="selectCategory(cat)">
+                {{ cat }}
+            </button>
         }
     </div>
     <div class="messages-content">
@@ -21,3 +20,4 @@
         </div>
     </div>
 </div>
+<app-messages-screen></app-messages-screen>

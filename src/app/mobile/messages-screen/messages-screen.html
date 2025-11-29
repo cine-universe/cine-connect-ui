@@ -1,0 +1,29 @@
+<app-mobile-header></app-mobile-header>
+<div class="mobile">
+    @if(!messageChosen) {
+        <div class="categories">
+            @for(cat of categories; track cat) {
+                <button [class.active]="cat === selectedCategory" (click)="selectCategory(cat)">
+                    {{ cat }}
+                </button>
+            }
+        </div>
+        <div class="messages-content">
+            <div class="message-list">
+                <input type="text" (input)="onSearch($event.target.value)" class="search" placeholder="Search...">
+                <app-messagelist
+                (messageSelected)="messageSelected($event)"
+                [selectedCategory]="selectedCategory"
+                [searchQuery]="searchQuery">
+                </app-messagelist>
+            </div>
+        </div>
+    }@else {
+        <div class="message-box">
+            <app-messagebox 
+                [message]="selectedMessage"
+                (back)="messageChosen=false"
+            ></app-messagebox>
+        </div>
+    }
+</div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -13,6 +13,7 @@ export class Messagebox implements AfterViewChecked {
   @Input() message: any;
   @Input() messages: any[] = [];
   @Input() currentUserId: any = 'me';
+  @Output() back = new EventEmitter<boolean>();
 
   outgoingMessage = '';
 
@@ -48,5 +49,9 @@ export class Messagebox implements AfterViewChecked {
 
   trackById(index: number, item: any) {
     return item?.id ?? index;
+  }
+
+  trigger() {
+    this.back.emit(false);
   }
 }

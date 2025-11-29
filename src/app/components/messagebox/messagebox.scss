@@ -13,6 +13,11 @@
         align-items: center;
         border-radius: 4px 4px 0px 0px;
 
+        .back-btn {
+            margin: 0;
+            padding: 0;
+        }
+
         img {
             width: 40px;
             height: 40px;
@@ -142,4 +147,10 @@
     justify-content: center;
     color: #777;
     font-size: 16px;
+}
+
+@media (min-width: 440px) {
+    .back-btn {
+        display: none;
+    }
 }

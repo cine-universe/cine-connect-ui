@@ -1,0 +1,74 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    .images {
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(135deg, #002594 0%, #3c81e1 100%);;
+        margin-bottom: 40px;
+        max-height: 150px;
+        .profile-picture {
+            width: 130px;
+            height: 130px;
+            background-color: none;
+            border-radius: 100%;
+            position: relative;
+            top: 50px;
+            left: 20px;
+            border: 2px solid rgb(82, 117, 223);
+        }
+    }
+
+    .brief {
+        padding: 10px;
+        h2, p, b {
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        b {
+            color: royalblue;
+        }
+    }
+
+    .details {
+        padding: 10px 0px;
+        font-size: small;
+        .detail {
+            color: gray;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    }
+
+    .connections {
+        display: flex;
+        padding: 10px 0px;
+        gap: 10px;
+
+        .links, .exp {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            p {
+                letter-spacing: 2px;
+                font-size: small;
+                color: grey;
+            }
+            a, b {
+                text-decoration: none;
+                color: white;
+
+                &:hover{
+                    color: royalblue;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 550px) {
+    .images {
+        border-radius: 4px;
+    }
+}

@@ -1,23 +1,9 @@
 <app-mobile-header></app-mobile-header>
 <div class="profile-container">
-    <div class="profile-left">
-        <img [src]="userProfile.avatarUrl" alt="Profile Picture" class="profile-picture"/>
-        <div class="brief">
-            <h2>{{ userProfile.name }}</h2>
-            @if(userProfile.projectsCount > 0) {
-                <div class="project-count">
-                    <b>{{ userProfile.projectsCount }}</b>
-                    <p> projects</p>
-                </div>
-            }
-            <p>{{ userProfile.email }}</p>
-            <div class="pskill-box">
-            @for(skill of userProfile.primarySkills; track skill) {
-                <p class="p-skill">{{ skill }}</p>
-            }
-            </div>
-        </div>
-    </div>
+    <app-profile-info
+        [userProfile]="userProfile"
+        (selectedCategoryUpdated)="selectCategory($event)"
+    ></app-profile-info>
     <div class="profile-content">
         <div class="category">
             @for(category of categories; track category) {

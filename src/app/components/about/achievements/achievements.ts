@@ -3,14 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { AchievementForm } from '../../achievement-form/achievement-form';
 import { Achievements } from '../../../models/Achievements';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { DeleteDialog } from '../../delete-dialog/delete-dialog';
 
 @Component({
   selector: 'app-achievements',
   imports: [
-    MatIconModule,
-    MatTooltipModule
+    MatIconModule
   ],
   templateUrl: './achievements.html',
   styleUrl: './achievements.scss',

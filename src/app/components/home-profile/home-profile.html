@@ -2,6 +2,16 @@
     <div class="container" (click)="navigateToProfile()">
         <img [src]="profile.avatarUrl" alt="dp">
         <h2>{{ profile.name }}</h2>
-        <p>{{ profile.links }} links</p>
+        <hr/>
+        <div class="connections">
+            <div class="links">
+                <b>{{ profile.links }}</b>
+                <p>links</p>
+            </div>
+            <div class="exp">
+                <b>{{ profile.experiences }}</b>
+                <p>experiences</p>
+            </div>
+        </div>
     </div>
 </div>

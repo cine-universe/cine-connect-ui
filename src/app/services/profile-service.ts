@@ -74,10 +74,11 @@ export class ProfileService {
   getUserProfile(): UserProfile {
     this.userProfile = {
       id: 1,
+      location: 'Hyderabad, IND',
       name: 'SS Rajamouli',
       email: 'ss.rajamouli@gmail.com',
       avatarUrl: 'assets/cyber-punk.jpg',
-      primarySkills: ['Director'],
+      primarySkill: 'Director',
       skills: ['Direction', 'Writing', 'Fighting'],
       projectsCount: 0,
       bio: '',
@@ -134,6 +135,7 @@ export class ProfileService {
       name: this.userProfile.name,
       avatarUrl: this.userProfile.avatarUrl,
       links: this.userProfile.links,
+      experiences: this.userProfile.experiences.length
     };
     return homeProfile;
   }

@@ -24,11 +24,35 @@
             margin-bottom: 8px;
         }
 
-        p {
-            margin-top: 12px;
-            font-size: 1em;
-            color: #666;
+        hr {
+            width: 100%;
+            border: 1px solid #333;
+        }
+
+        .connections {
+            display: flex;
+            flex-direction: column;
             align-self: flex-start;
+            .links, .exp {
+                display: flex;
+                gap: 5px;
+                align-items: center;
+                margin: 0px;
+                p {
+                    letter-spacing: 2px;
+                    font-size: small;
+                    color: grey;
+                    margin: 0px;
+                }
+                b {
+                    text-decoration: none;
+                    color: white;
+
+                    &:hover{
+                        color: royalblue;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,0 +1,27 @@
+<div class="profile">
+    <div class="images">
+        <img [src]="userProfile.avatarUrl" alt="Profile Picture" class="profile-picture"/>
+    </div>
+    <div class="brief">
+        <h2>{{ userProfile.name }}</h2>
+        <b class="p-skill">{{ userProfile.primarySkill }}</b>
+        <div class="details">
+            <div class="detail">
+                <mat-icon>room_outlined</mat-icon><p>{{ userProfile.location }}</p>
+            </div>
+            <div class="detail">
+                <mat-icon>link</mat-icon><p>{{ userProfile.email }}</p>
+            </div>
+        </div>
+        <div class="connections">
+            <div class="links">
+                <a routerLink="/" routerLinkActive="active">{{ userProfile.links }}</a>
+                <p>links</p>
+            </div>
+            <div class="exp">
+                <b (click)="selectExperienceCategory('Experience')">{{ userProfile.experiences.length }}</b>
+                <p>experiences</p>
+            </div>
+        </div>
+    </div>
+</div>

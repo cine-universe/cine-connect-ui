@@ -9,6 +9,7 @@ import { Description } from '../../components/about/description/description';
 import { Skills } from '../../components/about/skills/skills';
 import { AchievementsComponent } from '../../components/about/achievements/achievements';
 import { Achievements } from '../../models/Achievements';
+import { ProfileInfo } from '../../components/profile-info/profile-info';
 
 @Component({
   selector: 'app-profile',
@@ -19,7 +20,8 @@ import { Achievements } from '../../models/Achievements';
     Description, 
     MobileHeader,
     Skills,
-    AchievementsComponent
+    AchievementsComponent,
+    ProfileInfo
   ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss',
@@ -47,7 +49,7 @@ export class Profile {
   
   ngOnInit() {
     this.userProfile = this.profileService.getUserProfile();
-    this.posts = ['baahubali.jpg'];
+    this.posts = [6,2,3,4,0].map((i)=> 'https://picsum.photos/id/'+(100+i)+'/500/500');
     this.profileService.experience$.subscribe(exps => {
       this.experiences = exps
     });

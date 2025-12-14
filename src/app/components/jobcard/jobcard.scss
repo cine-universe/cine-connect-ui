@@ -1,111 +1,157 @@
-.container {
+// Define theme colors based on the image
+$bg-card-dark: #1a1a1a; // Dark gray/blue background
+$text-primary: #ffffff;
+$text-secondary: #9ca3af; // Light gray
+$badge-contract-bg: #091d34; 
+$badge-contract-text: royalblue; 
+$chip-bg: #2b2d38; // Darker chip bg
+$btn-bg: #2b2d38; // Dark button bg
+
+.job-card.custom-dark-theme {
+  background-color: $bg-card-dark;
+  color: $text-primary;
+  border-radius: 12px;
+  // Remove default material shadow for a flatter dark look if desired
+  box-shadow: none; 
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  width: 107vh;
+
+  @media (max-width: 768px) {
+    margin: 0px;
+    width: auto;
+    border-radius: 0px;
+  }
+
+  mat-card-content {
+    // Ensure explicit padding isn't overriding card padding
+    padding: 0;
+  }
+
+  /* Typography & Layout */
+  .header-row {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .job-title {
+      margin: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .job-type-badge {
+      font-size: xx-small;
+      font-weight: bold;
+      padding: 4px 12px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      // Dynamic class applied in template based on type text
+      &.contract {
+        background-color: $badge-contract-bg;
+        color: $badge-contract-text;
+        border: 1px solid rgba($badge-contract-text, 0.2);
+      }
+
+      &.freelance {
+        background-color: rgb(53, 7, 7);
+        color: red;
+        border: 1px solid rgba($badge-contract-text, 0.2);
+      }
+
+      &.full-time {
+        background-color: rgb(3, 28, 3);
+        color: green;
+        border: 1px solid rgba($badge-contract-text, 0.2);
+      }
+    }
+  }
+
+  .company-name {
+    margin: 0 0 2px 0;
+    font-size: 0.75rem;
+    color: gray;
+    font-weight: 500;
+  }
+
+  .meta-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    color: $text-secondary;
+    font-size: 0.85rem;
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+
+      // Sizing material icons down to fit text
+      mat-icon {
+        font-size: 16px;
+        height: 16px;
+        width: 16px;
+        line-height: 16px;
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .job-description {
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: $text-primary;
+  }
+
+  /* Separator line styles */
+  hr {
+    height: 0.5px;
     border: none;
-    border-radius: 8px;
-    background-color: #1a1a1a;
-    padding: 15px;
-    gap: 15px;
+    background-color: rgba(255, 255, 255, 0.08);
+  }
 
-    &:hover {
-        transform: scale(1.01);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    }
+  .footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
 
-    .posted-info {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-right: 15px;
-
-        p {
-            margin: 0px;
-            margin-top: 4px;
-            padding: 0px;
-            font-size: 12px;
-            color: gray;
-        }
-
-        .role {
-            margin: 5px 0px;
-            padding: 5px 5px;
-            color: white;
-            font-size: 12px;
-            font-style: bold;
-        }
-
-        img {
-            width: 100px;
-            height: 100px;
-            border-radius: 100%;
+    /* Customize Material Chips styles */
+    mat-chip-set {
+        // Override MDC tokens for dark theme chips
+        --mdc-chip-elevated-container-color: #{$chip-bg};
+        --mdc-chip-label-text-color: #{$text-secondary};
+        
+        .skill-chip {
+            font-size: 0.8rem;
+            // Making them slightly less rounded to match image
+            border-radius: 8px !important; 
+            border: 1px solid rgba(255,255,255,0.1);
         }
     }
 
-    .post-info {
-        width: 100%;
-
-        h2 {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        p {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        b {
-            color: green;
-        }
-
-        .loc {
-            margin: 0px;
-            font-size: 12px;
-            color: gray;
-        }
-
-        .genre {
-            margin-top: 12px;
-        }
-        .openings {
-            display: flex;
-            flex-direction: row;
-            gap: 10px;
-        }
-        .opening-roles {
-            width: fit-content;
-            margin: 5px 0px;
-            padding: 5px 5px;
-            color: white;
-            font-size: 12px;
-            background-color: royalblue;
-            border-radius: 4px;
-        }
-
-        .time-tag {
-            margin-top: 15px;
-            font-size: 12px;
-            color: gray;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            button {
-                margin-left: 10px;
-                padding: 5px 10px;
-                background-color: blue;
-                border-radius: 4px;
-                border: none;
-                color: white;
-                font-size: 12px;
-                font-weight: bold;
-                cursor: pointer;
-                transition: background-color 0.3s linear;
-
-                &:hover {
-                    background-color: royalblue;
-                }
-            }
+    /* Customize Material Button styles */
+    .apply-button {
+        background-color: $btn-bg;
+        color: $text-primary;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: small;
+        border: 1px solid rgba(255,255,255,0.1);
+        
+        &:hover {
+           background-color: $btn-bg;
         }
     }
+  }
+
+  &:hover {
+    .job-title {
+        color: royalblue;
+    }
+  }
 }

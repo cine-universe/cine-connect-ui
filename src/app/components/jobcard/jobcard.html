@@ -1,21 +1,42 @@
-<div class="container">
-    <div class="posted-info">
-        <img src="banner.jpg" alt="Avatar" class="avatar">
-        <p>{{ data.name }}</p>
-        <p class="role">{{ data.role }}</p>
+<mat-card class="job-card custom-dark-theme">
+  <mat-card-content>
+    <div class="header-row">
+      <h2 class="job-title">{{ jobData.title }}</h2>
+      <span class="job-type-badge" [ngClass]="jobData.type.toLowerCase()">
+        {{ jobData.type }}
+      </span>
     </div>
-    <div class="post-info">
-        <h2>{{ data.title }}</h2>
-        <p class="loc">{{ data.location }}</p>
-        <p class="genre">{{ data.genre }}</p>
-        <div class="openings">
-            @for(role of data.openingRoles; track role) {
-                <p class="opening-roles">{{ role }}</p>
-            }
-        </div>
-        <div class="time-tag">
-            <b>{{ data.postingTime }}</b>
-            <button>View</button>
-        </div>
+
+    <h3 class="company-name">{{ jobData.company }}</h3>
+
+    <div class="meta-row">
+      <span class="meta-item">
+        <mat-icon inline>location_on</mat-icon>
+        {{ jobData.location }}
+      </span>
+      <span class="meta-item">
+        <mat-icon inline>attach_money</mat-icon>
+        {{ jobData.rate }}
+      </span>
+      <span class="meta-item">
+        <mat-icon inline>schedule</mat-icon>
+        {{ jobData.postedTime }}
+      </span>
     </div>
-</div>
+
+    <p class="job-description">
+      {{ jobData.description }}
+    </p>
+    <hr/>
+    <div class="footer-row">
+      <mat-chip-set aria-label="Job Skills">
+        @for (skill of jobData.skills; track skill) {
+          <mat-chip class="skill-chip">{{ skill }}</mat-chip>
+        }
+      </mat-chip-set>
+
+      <button class="apply-button">Apply</button>
+    </div>
+
+  </mat-card-content>
+</mat-card>

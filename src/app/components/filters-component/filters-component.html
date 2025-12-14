@@ -1,0 +1,95 @@
+<div class="search-card">
+  <h2 class="title">Find your next crew</h2>
+
+  <div class="search-layout">
+    
+    <div class="search-bar-row">
+      <div class="input-wrapper search-input-wrapper">
+        <mat-icon class="icon left-icon">search</mat-icon>
+        <input
+          type="text"
+          placeholder="Search by role, skill, or keyword..."
+          [(ngModel)]="searchText"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="btn-filter"
+        [class.active]="showFilters()"
+        (click)="toggleFilters()"
+      >
+        <mat-icon>filter_list</mat-icon>
+        <span class="btn-text">Filters</span>
+      </button>
+    </div>
+
+    @if (showFilters()) {
+      <div class="filters-panel">
+        
+        <div class="filter-group">
+          <label class="label">Job Type</label>
+          <div class="tags-container">
+            @for (type of jobTypes(); track type) {
+              <button
+                type="button"
+                class="tag-btn"
+                [class.selected]="selectedTypes().includes(type)"
+                (click)="toggleJobType(type)"
+              >
+                @if (selectedTypes().includes(type)) {
+                  <mat-icon>done</mat-icon>
+                }
+                {{ type }}
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label class="label">Location</label>
+            <div class="input-wrapper">
+              <mat-icon class="icon left-icon">location_on_outlined</mat-icon>
+              <input
+                type="text"
+                placeholder="e.g. Los Angeles"
+                [(ngModel)]="locationFilter"
+              />
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <label class="label">Min Rate ($)</label>
+            <div class="input-wrapper">
+              <mat-icon class="icon left-icon">attach_money</mat-icon>
+              <input
+                type="number"
+                placeholder="e.g. 500"
+                [(ngModel)]="minRate"
+              />
+            </div>
+          </div>
+
+          <div class="filter-group checkbox-group">
+            <label class="checkbox-label">
+              <div class="custom-checkbox" [class.checked]="remoteOnly">
+                @if (remoteOnly) {
+                  <mat-icon>done</mat-icon>
+                }
+              </div>
+              <input type="checkbox" [(ngModel)]="remoteOnly" />
+              <span class="text">Remote / Remote-Friendly</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="panel-footer">
+          <button type="button" class="btn-reset" (click)="resetFilters()">
+            Reset Filters
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

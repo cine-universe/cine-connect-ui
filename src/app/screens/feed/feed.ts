@@ -23,7 +23,6 @@ import { MobileHeader } from '../../components/mobile-header/mobile-header';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe,
-    Jobcard,
     MobileHeader
   ],
   templateUrl: './feed.html',

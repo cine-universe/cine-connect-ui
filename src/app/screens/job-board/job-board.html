@@ -1,0 +1,9 @@
+<app-mobile-header></app-mobile-header>
+<div class="job-board-container">
+  <app-filters-component></app-filters-component>
+  <div class="job-data">
+    @for(data of sampleJob; track $index) {
+      <app-jobcard [jobData]="data"></app-jobcard>
+    }
+  </div>
+</div>

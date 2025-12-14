@@ -1,0 +1,253 @@
+$cinema-900: black; // Very dark
+$cinema-800: #1e1e1e; // Panel background
+$cinema-700: #2d2d2d; // Border/Hover
+$cinema-600: #404040; // Input borders
+$cinema-accent: royalblue; 
+$text-white: #ffffff;
+$text-gray: #9ca3af;
+
+@mixin input-base {
+  background-color: $cinema-900;
+  border: 1px solid $cinema-600;
+  color: $text-white;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  transition: all 0.2s ease;
+  outline: none;
+
+  &::placeholder {
+    color: $text-gray;
+  }
+
+  &:focus {
+    border-color: $cinema-accent;
+    box-shadow: 0 0 0 1px $cinema-accent;
+  }
+}
+
+.search-input-wrapper {
+    input {
+        width: 100%;
+    }
+}
+
+.search-card {
+  background-color: $cinema-900;
+  padding: 1.5rem;
+  border: 1px solid $cinema-700;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  width: 100vh;
+  margin: 20px;
+
+  @media (max-width: 768px) {
+    margin: 0px;
+    width: auto;
+    border-radius: 0px;
+  }
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $text-white;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.search-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search-bar-row {
+  display: flex;
+  gap: 4.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+  flex: 1;
+
+  .icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-style: normal;
+    color: $text-gray;
+    pointer-events: none;
+  }
+
+  input {
+    @include input-base;
+  }
+}
+
+.btn-filter {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid $cinema-600;
+  background-color: $cinema-700;
+  color: #e5e5e5;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: $cinema-600;
+  }
+
+  &.active {
+    background-color: $cinema-600;
+    border-color: $cinema-600;
+    color: $text-white;
+  }
+
+  @media (min-width: 768px) {
+    .btn-text {
+      display: inline;
+    }
+  }
+  @media (max-width: 767px) {
+    .btn-text {
+      display: none;
+    }
+  }
+}
+
+.filters-panel {
+  background-color: rgba($cinema-900, 0.5);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid $cinema-600;
+  animation: fadeIn 0.3s ease-out;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $text-gray;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-btn {
+  padding: 0.375rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid $cinema-600;
+  background-color: $cinema-800;
+  color: $text-gray;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+
+  &:hover {
+    border-color: $text-gray;
+  }
+
+  &.selected {
+    background-color: $cinema-accent;
+    border-color: $cinema-accent;
+    color: $text-white;
+  }
+}
+
+.filters-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 0.5rem;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+
+  input[type="checkbox"] {
+    display: none; 
+  }
+
+  .text {
+    font-size: 0.875rem;
+    color: $text-gray;
+    transition: color 0.2s;
+  }
+
+  &:hover .text {
+    color: $text-white;
+  }
+}
+
+.custom-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid $cinema-600;
+  background-color: $cinema-800;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+
+  &.checked {
+    background-color: $cinema-accent;
+    border-color: $cinema-accent;
+  }
+}
+
+.panel-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.5rem;
+}
+
+.btn-reset {
+  font-size: 0.75rem;
+  color: $cinema-accent;
+  background: none;
+  border: 1px solid royalblue;
+  padding: 3px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    color: $cinema-accent;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

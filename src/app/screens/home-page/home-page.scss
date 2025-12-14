@@ -5,6 +5,11 @@
     padding: 20px;
     justify-content: center;
 
+    .profile-content {
+        position: absolute;
+        left: 15rem;
+    }
+
     .scroll-top-btn {
         position: fixed;
         bottom: 20px;
@@ -20,81 +25,6 @@
         display: flex;
         flex-direction: column;
         gap: 40px;
-    }
-
-    .notify-section {
-        margin: 0;
-        padding: 10px;
-        width: 250px;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        border-radius: 4px;
-
-        .see-more {
-            background-color: #0f0f0f;
-            display: flex;
-            width: 100%;
-            a {
-                text-decoration: none;
-                color: lightblue;
-                padding: 10px;
-            }
-        }
-
-        .openings-section {
-            h3 {
-                margin-top: 0px;
-            }
-        }
-        
-        .opening {
-            display: flex;
-            flex-direction: column;
-            background-color: #0f0f0f;
-            padding: 10px;
-            cursor: pointer;
-
-            h4, p {
-                margin: 0;
-                padding: 0;
-            }
-
-            p{
-                color: gray;
-                font-size: small;
-            }
-
-            &:hover {
-                background-color: rgb(60, 58, 58);
-            }
-        }
-
-        .message {
-            display: flex;
-            background-color: #0f0f0f;
-            padding: 10px;
-            cursor: pointer;
-            justify-content: space-between;
-            align-items: center;
-
-            h4, p {
-                margin: 0;
-                padding: 0;
-            }
-
-            p {
-                padding: 5px;
-                color: royalblue;
-                background: none;
-                border: none;
-                font-size: medium;
-            }
-
-            &:hover {
-                background-color: rgb(60, 58, 58);
-            }
-        }
     }
 }
 

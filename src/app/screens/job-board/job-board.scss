@@ -1,0 +1,26 @@
+.job-board-container {
+    margin-left: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .job-data {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .job-board-container {
+        margin-top: 60px;
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 480px) {
+    app-mobile-header {
+        display: none;
+    }
+}

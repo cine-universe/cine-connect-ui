@@ -8,36 +8,6 @@
             <app-feed-post [post]="post"></app-feed-post>
         }
     </div>
-    <div class="notify-section">
-        <div class="openings-section">
-            <h3>Openings</h3>
-            @for(opening of openings; track $index) {
-                <div class="opening">
-                    <h4>{{ opening.projectName }}</h4>
-                    <p>{{ opening.postingTime }}</p>
-                </div>
-            }
-            <div class="see-more">
-                <a routerLink="/feed" routerLinkActive="active">See more</a>
-            </div>
-        </div>
-        <div class="messages-section">
-            <h3>Messages</h3>
-            @for(msg of newMessages; track $index) {
-                <div class="message">
-                    <h4>{{ msg.name }}</h4>
-                    @if(msg.unreadCount > 10) {
-                        <p> 10+ </p>
-                    } @else {
-                        <p>{{ msg.unreadCount }}</p>
-                    }
-                </div>
-            }
-            <div class="see-more">
-                <a routerLink="/messages" routerLinkActive="active">See more</a>
-            </div>
-        </div>
-    </div>
     @if(showScrollTop) {
         <button
             mat-fab

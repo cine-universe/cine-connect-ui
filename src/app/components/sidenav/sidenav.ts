@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ScrollHide } from '../../directives/scroll-hide';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,4 +14,14 @@ import { ScrollHide } from '../../directives/scroll-hide';
 })
 export class Sidenav {
 
+  constructor(
+    public authService: AuthService,
+    public router: Router
+  ) {}
+  
+  signOut() {
+    localStorage.removeItem('auth_token');
+    this.authService.logout();
+    this.router.navigate(['/login'])
+  }
 }

@@ -109,6 +109,16 @@
       }
     }
   }
+
+  .logout {
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+
+    &:hover {
+      color: royalblue;
+    }
+  }
 }
 
 /* Mobile Bottom Nav */

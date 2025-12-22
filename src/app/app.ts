@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Sidenav } from './components/sidenav/sidenav';
+import { AuthService } from './services/auth-service';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +11,9 @@ import { Sidenav } from './components/sidenav/sidenav';
 })
 export class App {
   protected readonly title = signal('cine-connect-ui');
+  isLoggedIn = computed(() => this.authService.isLoggedIn());
+
+  constructor(private authService: AuthService) {
+    console.log(this.authService.isLoggedIn())
+  }
 }

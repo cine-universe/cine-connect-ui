@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../services/profile-service';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-mobile-header',
@@ -16,7 +17,8 @@ export class MobileHeader {
   unreadNotificationsCount = 0;
 
   constructor(private router: Router,
-    private readonly profileService: ProfileService
+    private readonly profileService: ProfileService,
+    private readonly authService: AuthService
   ) {
     this.profilePic = this.profileService.userProfile.avatarUrl;
   }
@@ -49,5 +51,11 @@ export class MobileHeader {
     // compute unread message total and unread notifications
     this.unreadMessagesCount = 20;
     this.unreadNotificationsCount = 32;
+  }
+
+  logout() {
+    localStorage.removeItem('auth_token');
+    this.authService.logout();
+    this.router.navigate(['/login'])
   }
 }

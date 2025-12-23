@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,10 @@ export class Login {
     director: 'James Cameron',
   }];
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private toastr: ToastrService
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -40,7 +44,20 @@ export class Login {
   }
 
   login(provider: string) {
-    // Redirect the browser to the Gateway's OAuth2 initiation endpoint
-    window.location.href = `http://localhost:8080/oauth2/authorization/${provider}`;
+
+    fetch('http://localhost:8080/oauth2/authorization/github', {
+      method: 'HEAD',
+      mode: 'no-cors'
+    })
+    .then(() => {
+      window.location.href =
+        'http://localhost:8080/oauth2/authorization/github';
+    })
+    .catch(() => {
+      this.toastr.error(
+        'Gateway is down. Please try later.',
+        'Login Failed'
+      );
+    });
   }
 }

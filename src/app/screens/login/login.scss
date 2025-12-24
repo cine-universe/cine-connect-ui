@@ -12,16 +12,6 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
-        .projects {
-            width: 70%;
-            height: 50vh;
-            background-image: url('/baahubali.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 16px;
-        }
     }
 
     .login-content {
@@ -110,6 +100,28 @@
             font-size: 0.9rem;
             a { color: royalblue; text-decoration: none; }
         }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+
+        .app-desc {
+            width: 100%;
+        }
+
+        .login-content {
+            display: none;
+        }
+
+        &.mobile-show-login {
+            .app-desc { display: none; }
+            .login-content { 
+                display: block; 
+                width: 100%;
+            }
         }
     }
 }

@@ -1,10 +1,6 @@
-<div class="login-container">
+<div class="login-container" [class.mobile-show-login]="isEnabledLogin">
     <div class="app-desc">
-        <h2>RECENT PLATFORM PROJECTS</h2>
-        <div class="projects">
-            <h3>{{ projects[0].title }}</h3>
-            <h4>{{ projects[1].director }}</h4>
-        </div>
+        <app-landing-component (enableLogin)="enableLogin($event)"></app-landing-component>
     </div>
     <div class="login-content">
         <div class="form-panel">

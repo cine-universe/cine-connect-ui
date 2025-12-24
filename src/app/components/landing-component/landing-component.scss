@@ -1,0 +1,85 @@
+.container {
+    .top {
+        display: none;
+    }
+    h2 {
+        text-align: center;
+    }
+
+    .heading {
+        p {
+            margin: 0px 50px 0px 50px;
+            font-size: medium;
+            color: gray;
+        }
+    }
+
+    .features {
+        display: flex;
+        gap: 10px;
+        margin: 20px 50px 0px 50px;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgb(34, 37, 150);
+            border-radius: 8px;
+            padding: 10px;
+            h3 {
+                margin: 0;
+            }
+            p {
+                margin: 0;
+                color: gray;
+                font-size: small;
+            }
+        }
+    }
+
+    .footer {
+        position: relative;
+        top: 10px;
+        bottom: 10px;
+        width: 100%;
+        text-align: center;
+        color: rgb(116, 112, 112);
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1rem;
+    }
+    h3 {
+        font-size: 0.9rem;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .image-slider {
+            h2 {display: none;}
+            display: flex;
+            flex-direction: column;
+        }
+        .cine-info {
+            p {
+                font-size: small;
+                margin: 20px;
+            }
+        }
+        .features {
+            flex-direction: column;
+            margin: 20px 20px 0px 20px;
+        }
+    }
+    
+}

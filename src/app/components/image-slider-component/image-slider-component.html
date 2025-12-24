@@ -1,0 +1,30 @@
+<div class="slider-container" 
+     (mouseenter)="stopAutoSlide()" 
+     (mouseleave)="startAutoSlide()">
+     
+  <div class="slider-track" [style.transform]="transformStyle()">
+    @for (slide of slides(); track $index) {
+      <div class="slide">
+        <img [src]="slide.url" [alt]="slide.title || 'Slide image'" />
+        @if (slide.title) {
+          <div class="slide-caption">
+            <h3>{{ slide.title }}</h3>
+          </div>
+        }
+      </div>
+    }
+  </div>
+
+  <button class="nav-btn prev" (click)="goToPrevious()">&#10094;</button>
+  <button class="nav-btn next" (click)="goToNext()">&#10095;</button>
+
+  <div class="dots-container">
+    @for (slide of slides(); track $index) {
+      <span 
+        class="dot" 
+        [class.active]="$index === currentIndex()"
+        (click)="goToSlide($index)">
+      </span>
+    }
+  </div>
+</div>

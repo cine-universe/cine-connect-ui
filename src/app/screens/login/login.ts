@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthApi } from '../../apis';
+import { AuthService } from '../../services/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +15,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./login.scss'],
 })
 export class Login {
-  @Output() loggedIn = new EventEmitter<boolean>();
+
   loginForm: FormGroup;
   projects = [{
     image: 'assets/varanasi.png',
@@ -26,7 +29,10 @@ export class Login {
 
   constructor(
     private fb: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private authApi: AuthApi,
+    private authService: AuthService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -36,8 +42,22 @@ export class Login {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Login Data:', this.loginForm.value);
-      this.loggedIn.emit(true);
+      const username = this.loginForm.value.email;
+      const password = this.loginForm.value.password;
+      this.authApi.login({username: username, password: password})
+        .subscribe({
+          next: res => {
+            this.authService.login(res.token);
+            this.router.navigate(['/home']);
+          },
+          error: err => {
+            if (err && err.status === 403) {
+              this.toastr.error('Access denied. Please check your credentials.', 'Login Failed');
+            } else {
+              this.toastr.error('An error occurred. Please try again.', 'Login Failed');
+            }
+          }
+        });
     } else {
       this.loginForm.markAllAsTouched();
     }

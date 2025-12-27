@@ -11,7 +11,7 @@ export class FeedPostService {
     let posts = [{
         id: 1,
         userId: 1,
-        avatarUrl: 'assets/cyber-punk.jpg',
+        avatarUrl: 'https://picsum.photos/id/281/200/200',
         title : 'Rajamouli',
         subtitle : 'Varanasi',
         mediaType: MediaType.Image,
@@ -26,7 +26,7 @@ export class FeedPostService {
       }, {
         id: 2,
         userId: 1,
-        avatarUrl: 'assets/cyber-punk.jpg',
+        avatarUrl: 'https://picsum.photos/id/287/200/200',
         title : 'Prabhas',
         subtitle : 'Baahubali The Epic',
         mediaType: MediaType.Image,
@@ -41,7 +41,7 @@ export class FeedPostService {
       }, {
         id: 3,
         userId: 1,
-        avatarUrl: 'assets/cyber-punk.jpg',
+        avatarUrl: 'https://picsum.photos/id/288/200/200',
         title : 'Steven Spielberg',
         subtitle : 'Venom Last Dance',
         mediaType: MediaType.Youtube,
@@ -56,7 +56,7 @@ export class FeedPostService {
       }, {
         id: 4,
         userId: 1,
-        avatarUrl: 'assets/cyber-punk.jpg',
+        avatarUrl: 'https://picsum.photos/id/289/200/200',
         title : 'FondMan',
         subtitle : 'Tears of Steel',
         mediaType: MediaType.Video,

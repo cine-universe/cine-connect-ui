@@ -4,7 +4,7 @@
             (click)="selectMessage(message)"
              [class.selected]="selectedMessage === message"
              tabindex="0">
-            <img src="assets/cyber-punk.jpg" alt="User Icon" class="user-icon"/>
+            <img [src]="message.profileUrl" alt="User Icon" class="user-icon"/>
             <div class="message-info">
                 <p class="sender" [ngClass]="{'unread': !message.isRead}">{{ message.sender }}</p>
                 <p [ngClass]="{'unread': !message.isRead}">{{ message.time }}</p>

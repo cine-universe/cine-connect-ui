@@ -1,5 +1,5 @@
 <div class="profile">
-    <div class="images">
+    <div class="images" [style.background-image]="'url(' + userProfile.backgroundUrl + ')'">
         <img [src]="userProfile.avatarUrl" alt="Profile Picture" class="profile-picture"/>
     </div>
     <div class="brief">

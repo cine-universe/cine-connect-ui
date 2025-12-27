@@ -6,6 +6,7 @@ export interface UserProfile {
   name: string;
   email: string;
   avatarUrl: string;
+  backgroundUrl: string;
   primarySkill: string;
   location: string;
   skills: string[];

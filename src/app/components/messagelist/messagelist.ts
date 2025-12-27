@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface Message {
   id?: number | string;
+  profileUrl?: string;
   sender: string;
   time: string;
   isRead?: boolean;
@@ -60,9 +61,9 @@ export class Messagelist implements OnInit {
   ngOnInit() {
     // seed messages (replace with service call when available)
     this.messages = [
-      { id: 1, sender: 'Alice Johnson', time: '10:30 AM', isRead: false, isFavorite: true },
-      { id: 2, sender: 'Bob Smith', time: 'Yesterday', isRead: true, isFavorite: false },
-      { id: 3, sender: 'Charlie Brown', time: '2 days ago', isRead: false, isFavorite: false }
+      { id: 1, profileUrl: 'https://picsum.photos/id/63/200/200', sender: 'Alice Johnson', time: '10:30 AM', isRead: false, isFavorite: true },
+      { id: 2, profileUrl: 'https://picsum.photos/id/65/200/200', sender: 'Bob Smith', time: 'Yesterday', isRead: true, isFavorite: false },
+      { id: 3, profileUrl: 'https://picsum.photos/id/66/200/200', sender: 'Charlie Brown', time: '2 days ago', isRead: false, isFavorite: false }
     ];
     this.filterMessages();
   }

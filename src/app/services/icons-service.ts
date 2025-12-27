@@ -13,5 +13,6 @@ export class IconsService {
   registerIcons() {
     this.matIconRegistry.addSvgIcon('messaging', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/messaging.svg'));
     this.matIconRegistry.addSvgIcon('forward', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/forward.svg'));
+    this.matIconRegistry.addSvgIcon('github', this.domSanitizer.bypassSecurityTrustResourceUrl('assets/icons/github.svg'));
   }
 }

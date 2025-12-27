@@ -33,7 +33,30 @@
         }
 
         h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+        .login-with-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
 
+            button {
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0;
+
+                svg {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        }
+
+        hr {
+            margin: 2rem 0;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
         .input-group {
             margin-bottom: 1.5rem;
             display: flex;
@@ -98,6 +121,7 @@
             text-align: center;
             margin-top: 2rem;
             font-size: 0.9rem;
+            cursor: pointer;
             a { color: royalblue; text-decoration: none; }
         }
         }

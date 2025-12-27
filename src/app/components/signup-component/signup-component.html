@@ -1,0 +1,64 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+    <div class="input-group">
+    <label for="username">Username</label>
+    <input 
+        type="text" 
+        id="username" 
+        formControlName="username" 
+        placeholder="director_12_34"
+        [class.error]="(loginForm.get('username')?.invalid && loginForm.get('username')?.touched) || loginForm.get('username')?.hasError('usernameTaken')"
+    >
+    <span class="error-msg" *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched && !loginForm.get('username')?.hasError('usernameTaken')">Valid username is required</span>
+    <span class="error-msg" *ngIf="loginForm.get('username')?.hasError('usernameTaken')">Username already exists</span>
+    </div>
+
+    <div class="input-group">
+    <label for="email">Email Address</label>
+    <input 
+        type="email" 
+        id="email" 
+        formControlName="email" 
+        placeholder="director@studio.com"
+        [class.error]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched"
+    >
+    @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+        <span class="error-msg">Valid email is required</span>
+    }
+    </div>
+
+    <div class="input-group">
+    <label for="password">Password</label>
+    <input 
+        type="password" 
+        id="password" 
+        formControlName="password" 
+        placeholder="••••••••"
+        [class.error]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+    >
+    @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+        <span class="error-msg">Password must be at least 6 characters</span>
+    }
+    </div>
+
+    <div class="input-group">
+    <label for="confirm-password">Confirm Password</label>
+    <input 
+        type="password" 
+        id="confirm-password" 
+        formControlName="confirmPassword" 
+        placeholder="••••••••"
+        [class.error]="loginForm.get('confirmPassword')?.invalid && loginForm.get('confirmPassword')?.touched"
+    >
+    @if (loginForm.get('confirmPassword')?.invalid && loginForm.get('confirmPassword')?.touched) {
+        <span class="error-msg">Passwords do not match</span>
+    }
+    </div>
+
+    <button type="submit" class="btn-primary" [disabled]="loginForm.invalid">
+    Enter to Cine Connect
+    </button>
+
+</form>
+
+<p class="signin-link"><a (click)="backToLoginClicked()">Back to Login</a></p>

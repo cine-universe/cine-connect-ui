@@ -6,13 +6,17 @@ import { AuthApi } from '../../apis';
 import { AuthService } from '../../services/auth-service';
 import { Router } from '@angular/router';
 import { LandingComponent } from '../../components/landing-component/landing-component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SignupComponent } from '../../components/signup-component/signup-component';
 
 @Component({
   selector: 'app-login',
   imports: [
     CommonModule, 
     ReactiveFormsModule,
-    LandingComponent
+    LandingComponent,
+    MatTooltipModule,
+    SignupComponent
   ],
   templateUrl: './login.html',
   styleUrls: ['./login.scss'],
@@ -20,6 +24,7 @@ import { LandingComponent } from '../../components/landing-component/landing-com
 export class Login {
 
   isEnabledLogin = false;
+  isNewUser = false
 
   loginForm: FormGroup;
   projects = [{
@@ -40,14 +45,14 @@ export class Login {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const username = this.loginForm.value.email;
+      const username = this.loginForm.value.username;
       const password = this.loginForm.value.password;
       if(username === 'admin@cc.com' && password === 'admin123') {
         this.authService.login('dummy-jwt-token-for-admin');

@@ -99,7 +99,7 @@
 
     .msg-bottom {
         padding: 10px;
-        background-color: #1a1a1a;
+        // background-color: #1a1a1a;
         border-top: 1px solid #333;
         border-radius: 0px 0px 4px 4px;
         display: flex;
@@ -154,5 +154,13 @@
 @media (min-width: 440px) {
     .back-btn {
         display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        .msg-bottom {
+            margin-bottom: 60px
+        }
     }
 }

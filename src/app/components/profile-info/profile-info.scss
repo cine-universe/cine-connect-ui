@@ -34,6 +34,20 @@
         b {
             color: royalblue;
         }
+
+        .applications {
+            margin-top: 20px;
+            a {
+                text-decoration: none;
+                display: flex;
+                gap: 10px;
+                color: white;
+                h2 {
+                    font-size: medium;
+                    color: white;
+                }
+            }
+        }
     }
 
     .details {
@@ -76,5 +90,11 @@
 @media (min-width: 550px) {
     .images {
         border-radius: 4px;
+    }
+}
+
+@media (max-width: 768px) {
+    .applications {
+        display: none;
     }
 }

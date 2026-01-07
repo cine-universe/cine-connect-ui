@@ -133,8 +133,7 @@ $btn-bg: #2b2d38; // Dark button bg
         }
     }
 
-    /* Customize Material Button styles */
-    .apply-button {
+    .applied-button {
         background-color: $btn-bg;
         color: $text-primary;
         padding: 10px;
@@ -147,6 +146,19 @@ $btn-bg: #2b2d38; // Dark button bg
            background-color: $btn-bg;
         }
     }
+      .apply-button {
+        background-color: royalblue;
+        color: $text-primary;
+        padding: 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: small;
+        border: 1px solid rgba(255,255,255,0.1);
+        
+        &:hover {
+           background-color: royalblue;
+        }
+      }
   }
 
   &:hover {

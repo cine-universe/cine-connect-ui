@@ -6,6 +6,7 @@ import { JobBoard } from './screens/job-board/job-board';
 import { Login } from './screens/login/login';
 import { Oauth2RedirectComponent } from './components/oauth2-redirect-component/oauth2-redirect-component';
 import { authGuard } from './services/auth-guard';
+import { Applications } from './screens/applications/applications';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -19,6 +20,7 @@ export const routes: Routes = [
       { path: 'feed', component: JobBoard },
       { path: 'messages', component: Messages },
       { path: 'profile', component: Profile },
+      { path: 'applications', component: Applications },
     ]
   },
 

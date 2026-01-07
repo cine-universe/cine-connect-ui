@@ -1,0 +1,28 @@
+<app-mobile-header></app-mobile-header>
+<div class="container">
+    @if(applications.length === 0) {
+        <p>You have not applied to any jobs yet.</p>
+        <a routerLink="/feed">Browse Jobs</a>
+    } @else {
+        @for(application of paginatedApplications; track application.id) {
+            <div class="application">
+                <h2>{{ application.title }}</h2>
+                <p>{{ application.company }}</p>
+                <p>{{ application.location }}</p>
+                <p style="color: green;">{{ application.appliedDate | timeAgo }}</p>
+                <hr />
+                <mat-progress-bar mode="determinate" [value]="application.status === 'Applied' ? 5 : application.status === 'Viewed' || application.status === 'Dismissed' ? 50 : 100" [color]="application.status === 'Dismissed' ? 'warn' : 'primary'" [class.dismissed]="application.status === 'Dismissed'"></mat-progress-bar>
+                <div class="status">
+                    <p style="color: royalblue;">Applied</p>
+                    <p [class]="application.status === 'Viewed' || application.status === 'Dismissed' || application.status === 'Contacted' ? 'status-color' : null">Viewed</p>
+                    @if(application.status === 'Dismissed') {
+                        <p style="color: red;">Dismissed</p>
+                    } @else {
+                        <p [class]="application.status === 'Contacted' ? 'status-color' : null">Contacted</p>
+                    }
+                </div>
+            </div>  
+        }   
+        <mat-paginator [length]="applications.length" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="onPage($event)"></mat-paginator>
+    }
+</div>

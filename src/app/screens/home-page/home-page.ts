@@ -4,7 +4,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FeedPost } from '../../components/feed-post/feed-post';
 import { FeedPostService } from '../../services/feed-post-service';
 import { Post } from '../../models/Post';
-import { HomeProfile } from '../../components/home-profile/home-profile';
 import { RouterModule } from '@angular/router';
 import { MatIcon } from '@angular/material/icon';
 import { MobileHeader } from '../../components/mobile-header/mobile-header';
@@ -16,8 +15,7 @@ import { MobileHeader } from '../../components/mobile-header/mobile-header';
     MatIcon,
     MatFormFieldModule, 
     MatSelectModule, 
-    FeedPost, 
-    HomeProfile,
+    FeedPost,
     MobileHeader],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss',

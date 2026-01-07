@@ -14,29 +14,24 @@
 
         <nav class="drawer-list">
             <a class="drawer-item" (click)="navigateToProfile(); closeMobileMenu()">
-                <span>Profile</span>
+                <mat-icon>person</mat-icon><span>Profile</span>
             </a>
 
             <a class="drawer-item" routerLink="/notifications" (click)="closeMobileMenu()">
-                <span>Notifications</span>
-                @if(unreadNotificationsCount > 0) {
-                    <span class="badge">
-                        {{ unreadNotificationsCount > 99 ? '99+' : unreadNotificationsCount }}
-                    </span>
-                }
+                <mat-icon>notifications</mat-icon><span>Notifications</span>
             </a>
 
             <a class="drawer-item" routerLink="/messages" (click)="navigateToMessages(); closeMobileMenu()">
-                <span>Messages</span>
-                @if(unreadMessagesCount > 0) {
-                    <span class="badge">
-                        {{ unreadMessagesCount > 99 ? '99+' : unreadMessagesCount }}
-                    </span>
-                }
+                <mat-icon>email</mat-icon><span>Messages</span>
             </a>
 
+            <a class="drawer-item" routerLink="/applications" (click)="navigateToApplications(); closeMobileMenu()">
+                <mat-icon>assignment</mat-icon><span>Applications</span>
+            </a>
+
+            <hr/>
             <a class="drawer-item" (click)="logout()">
-                <span>Logout</span>
+                <mat-icon>logout</mat-icon><span>Logout</span>
             </a>
         </nav>
     </aside>

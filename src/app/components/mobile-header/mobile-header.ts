@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProfileService } from '../../services/profile-service';
 import { AuthService } from '../../services/auth-service';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-mobile-header',
-  imports: [],
+  imports: [
+    MatIconModule
+  ],
   templateUrl: './mobile-header.html',
   styleUrl: './mobile-header.scss',
 })
@@ -45,6 +48,10 @@ export class MobileHeader {
 
   navigateToMessages(): void {
     this.router.navigate(['/messages']);
+  }
+
+  navigateToApplications(): void {
+    this.router.navigate(['/applications']);
   }
 
   private updateBadges(): void {

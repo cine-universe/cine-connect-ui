@@ -35,7 +35,11 @@
         }
       </mat-chip-set>
 
-      <button class="apply-button">Apply</button>
+      <button 
+        [class]="applicationStatus() === 'Applied' ? 'applied-button' : 'apply-button'" 
+        (click)="openApplicationPopup()"
+        [disabled]="applicationStatus() === 'Applied'"
+      >{{ applicationStatus() }}</button>
     </div>
 
   </mat-card-content>

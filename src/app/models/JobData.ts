@@ -1,4 +1,5 @@
 export interface JobData {
+  id: number;
   title: string;
   company: string;
   type: string;    // e.g., 'Contract'

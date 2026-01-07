@@ -127,18 +127,8 @@ export class ProfileService {
     this.setExperiences(this.userProfile.experiences);
     this.updateDescription(this.userProfile.bio || '');
     this.setAchievements(this.userProfile.achievements);
+    localStorage.setItem('email', this.userProfile.email);
     return this.userProfile;
-  }
-
-  getHomeProfile() {
-    let homeProfile = {
-      id: this.userProfile.id,
-      name: this.userProfile.name,
-      avatarUrl: this.userProfile.avatarUrl,
-      links: this.userProfile.links,
-      experiences: this.userProfile.experiences.length
-    };
-    return homeProfile;
   }
 
   getAchievements() {

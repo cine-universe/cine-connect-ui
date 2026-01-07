@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Feed } from './feed';
+import { JobApplicationPopup } from './job-application-popup';
 
-describe('Feed', () => {
-  let component: Feed;
-  let fixture: ComponentFixture<Feed>;
+describe('JobApplicationPopup', () => {
+  let component: JobApplicationPopup;
+  let fixture: ComponentFixture<JobApplicationPopup>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Feed]
+      imports: [JobApplicationPopup]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Feed);
+    fixture = TestBed.createComponent(JobApplicationPopup);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

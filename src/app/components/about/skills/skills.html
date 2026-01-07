@@ -12,7 +12,7 @@
             @for(skill of userSkills; track $index) {
                 <div class="skill-chip">
                     <p>{{ skill }}</p>
-                    <button (click)="deleteSkill($index, skill)"><mat-icon class="edit">delete</mat-icon></button>
+                    <button (click)="deleteSkill($index, skill)"><mat-icon class="edit">close</mat-icon></button>
                 </div>
             }
         }

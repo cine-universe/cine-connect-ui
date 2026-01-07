@@ -81,3 +81,7 @@ body {
 .nav-hidden {
   transform: translateY(99%); /* Moves the nav fully out of view */
 }
+
+.mat-mdc-paginator-page-size {
+  display: none !important;
+}

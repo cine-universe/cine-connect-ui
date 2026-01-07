@@ -1,0 +1,108 @@
+.container {
+    margin-left: 60px;
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .application {
+        background-color: #1e1e1e;
+        padding: 20px;
+        margin-bottom: 5px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        width: 50%;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        h2 {
+            margin: 0;
+            color: white;
+        }
+        p {
+            margin: 5px 0;
+            font-size: small;
+            color: gray;
+        }
+        .applied-date {
+            font-size: small;
+            color: lightgray;
+        }
+        mat-progress-bar {
+            color: royalblue;
+            border-radius: 4px;
+            margin: 10px 0;
+            border: 1px solid #333;
+
+            &.dismissed {
+                /* slightly tint the track background */
+                background-color: rgba(244, 67, 54, 0.722);
+
+                /* ensure the fill is red */
+                .mat-progress-bar-fill::after {
+                    background-color: #f11607 !important;
+                }
+
+                /* optional: make buffer/background slightly red */
+                .mat-progress-bar-background {
+                    background-color: rgba(244, 67, 54, 0.977) !important;
+                }
+            }
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 20px 0;
+        }
+        .status {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            p{
+                margin: 0;
+                font-weight: bold;
+                color: gray;
+                font-size: small;
+            }
+            .status-color {
+                color: royalblue;
+            }
+        }
+        &:hover {
+            h2 {
+                color: royalblue;
+            }
+            cursor: pointer;
+        }
+    }
+    
+    mat-paginator {
+        width: 50%;
+        display: flex;
+        padding: 20px;
+        border: 1px solid #333;
+        border-radius: 8px;
+        justify-content: flex-end;
+        align-items: center;
+        background: transparent;
+        color: white;
+        background-color: #1e1e1e;
+    }
+}
+
+@media (min-width: 550px) {
+    app-mobile-header {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-left: 0;
+        padding: 18px;
+        .application {
+            width: 100%;
+        }
+        mat-paginator {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+}

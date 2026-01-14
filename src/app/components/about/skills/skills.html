@@ -11,8 +11,7 @@
         } @else {
             @for(skill of userSkills; track $index) {
                 <div class="skill-chip">
-                    <p>{{ skill }}</p>
-                    <button (click)="deleteSkill($index, skill)"><mat-icon class="edit">close</mat-icon></button>
+                    <p (click)="deleteSkill($index, skill)">{{ skill }}</p>
                 </div>
             }
         }

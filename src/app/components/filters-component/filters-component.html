@@ -10,6 +10,7 @@
           type="text"
           placeholder="Search by role, skill, or keyword..."
           [(ngModel)]="searchText"
+          (ngModelChange)="onSearch($event)"
         />
       </div>
 
@@ -55,6 +56,7 @@
                 type="text"
                 placeholder="e.g. Los Angeles"
                 [(ngModel)]="locationFilter"
+                (ngModelChange)="onLocationChange($event)"
               />
             </div>
           </div>
@@ -67,6 +69,7 @@
                 type="number"
                 placeholder="e.g. 500"
                 [(ngModel)]="minRate"
+                (ngModelChange)="onMinRateChange($event)"
               />
             </div>
           </div>

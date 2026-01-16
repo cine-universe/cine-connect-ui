@@ -39,7 +39,6 @@ export class Notifications implements OnInit {
 
   ngOnInit() {
     this.notifications = this.notificationService.getNotifications();
-    console.log('Notifications:', this.notifications);
     this.filteredNotifications = this.notifications;
   }
 

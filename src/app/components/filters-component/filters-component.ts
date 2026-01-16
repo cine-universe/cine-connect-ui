@@ -6,8 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 export interface Filters {
   searchText: string;
   locationFilter: string;
-  minRate: number | null;
-  remoteOnly: boolean;
+  role: string;
   jobTypes: string[];
 }
 
@@ -22,19 +21,15 @@ export interface Filters {
   styleUrl: './filters-component.scss',
 })
 export class FiltersComponent {
-  // Form Models
   searchText: string = '';
   locationFilter: string = '';
-  minRate: number | null = null;
+  role: string = '';
   remoteOnly: boolean = false;
 
-  // UI State Signals
   showFilters = signal<boolean>(false);
   
-  // Data
-  jobTypes = signal<string[]>(['Contract', 'Freelance', 'Full-Time']);
+  jobTypes = signal<string[]>(['film', 'short-film', 'series', 'ad-film', 'others']);
   
-  // Selection State
   selectedTypes = signal<string[]>([]);
 
   @Output() filtersChange = new EventEmitter<Filters>();
@@ -46,18 +41,15 @@ export class FiltersComponent {
   }
 
   onSearch(value: string) {
-    // debounce to avoid emitting on every keystroke
     if (this.searchTimeout) {
       clearTimeout(this.searchTimeout);
     }
     this.searchTimeout = setTimeout(() => {
-      // only emit after 3+ chars or when cleared to reset
       if (!value || value.length >= 3) {
         this.filtersChange.emit({
           searchText: value ? value.trim() : '',
           locationFilter: this.locationFilter,
-          minRate: this.minRate,
-          remoteOnly: this.remoteOnly,
+          role: this.role,
           jobTypes: this.selectedTypes(),
         });
       }
@@ -67,17 +59,15 @@ export class FiltersComponent {
     this.filtersChange.emit({
       searchText: this.searchText,
       locationFilter: value ? value.trim() : '',
-      minRate: this.minRate,
-      remoteOnly: this.remoteOnly,
+      role: this.role,
       jobTypes: this.selectedTypes(),
     });
   }
-  onMinRateChange(value: number | null) {
+  onRoleChange(value: string) {
     this.filtersChange.emit({
       searchText: this.searchText,
       locationFilter: this.locationFilter,
-      minRate: value,
-      remoteOnly: this.remoteOnly,
+      role: value,
       jobTypes: this.selectedTypes(),
     });
   }
@@ -93,8 +83,7 @@ export class FiltersComponent {
     this.filtersChange.emit({
       searchText: this.searchText,
       locationFilter: this.locationFilter,
-      minRate: this.minRate,
-      remoteOnly: this.remoteOnly,
+      role: this.role,
       jobTypes: this.selectedTypes(),
     });
   }
@@ -102,15 +91,12 @@ export class FiltersComponent {
   resetFilters() {
     this.searchText = '';
     this.locationFilter = '';
-    this.minRate = null;
-    this.remoteOnly = false;
+    this.role = '';
     this.selectedTypes.set([]);
-    // notify parent to clear filters
     this.filtersChange.emit({
       searchText: '',
       locationFilter: '',
-      minRate: null,
-      remoteOnly: false,
+      role: '',
       jobTypes: [],
     });
   }

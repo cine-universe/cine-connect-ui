@@ -75,7 +75,6 @@ export class NotificationService {
   }
 
   publishNotification(notification: Notification) {
-    console.log(notification)
     this.notifications.unshift(notification);
   }
 }

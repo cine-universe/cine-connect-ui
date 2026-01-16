@@ -49,21 +49,33 @@ $btn-bg: #2b2d38; // Dark button bg
       letter-spacing: 0.5px;
 
       // Dynamic class applied in template based on type text
-      &.contract {
+      &.film {
         background-color: $badge-contract-bg;
-        color: $badge-contract-text;
+        color: #2979FF;
+        border: 1px solid rgba(#2979FF, 0.2);
+      }
+
+      &.short-film {
+        background-color: #062427;
+        color: #00E5FF;
         border: 1px solid rgba($badge-contract-text, 0.2);
       }
 
-      &.freelance {
-        background-color: rgb(53, 7, 7);
-        color: red;
+      &.series {
+        background-color: #300937;
+        color: #D500F9;
         border: 1px solid rgba($badge-contract-text, 0.2);
       }
 
-      &.full-time {
+      &.ad-film {
+        background-color: #282007;
+        color: #FFC400;
+        border: 1px solid rgba($badge-contract-text, 0.2);
+      }
+
+      &.others {
         background-color: rgb(3, 28, 3);
-        color: green;
+        color: #90A4AE;
         border: 1px solid rgba($badge-contract-text, 0.2);
       }
     }

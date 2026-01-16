@@ -63,13 +63,12 @@ export class JobBoard implements OnInit {
       const matchesLocation = !filters.locationFilter || (
         job.location?.toLowerCase().includes(filters.locationFilter.toLowerCase())
       );
-      const matchesMinRate = !filters.minRate || (
-        job.rate?.toLowerCase().includes(filters.minRate.toString().toLowerCase())
+      const matchesRole = !filters.role || (
+        job.role?.toLowerCase().includes(filters.role.toString().toLowerCase())
       );
-      const matchesRemoteOnly = !filters.remoteOnly || job.location === 'Remote';
       const matchesJobTypes = !filters.jobTypes.length || filters.jobTypes.includes(job.type);
 
-      return matchesSearch && matchesLocation && matchesMinRate && matchesRemoteOnly && matchesJobTypes;
+      return matchesSearch && matchesLocation && matchesRole && matchesJobTypes;
     });
   }
 }

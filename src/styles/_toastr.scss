@@ -4,7 +4,7 @@
 }
 
 .toast-container {
-    top: 70% !important; 
+    top: 75% !important; 
     left: 40%;
     @media (max-width: 768px) {
         left: 10%
@@ -13,8 +13,8 @@
 
 .toast-success {
     background-color: #1a1a1a !important;
-    border-left: 3px solid #4CAF50;
-    .toast-title { color: #4CAF50; }
+    border-left: 3px solid royalblue;
+    .toast-title { color: royalblue; }
     .toast-message { font-size: small; }
 }
 

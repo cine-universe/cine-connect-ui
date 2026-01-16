@@ -29,7 +29,7 @@
       <div class="filters-panel">
         
         <div class="filter-group">
-          <label class="label">Job Type</label>
+          <label class="label">Type</label>
           <div class="tags-container">
             @for (type of jobTypes(); track type) {
               <button
@@ -38,9 +38,6 @@
                 [class.selected]="selectedTypes().includes(type)"
                 (click)="toggleJobType(type)"
               >
-                @if (selectedTypes().includes(type)) {
-                  <mat-icon>done</mat-icon>
-                }
                 {{ type }}
               </button>
             }
@@ -62,28 +59,16 @@
           </div>
 
           <div class="filter-group">
-            <label class="label">Min Rate ($)</label>
+            <label class="label">Role</label>
             <div class="input-wrapper">
-              <mat-icon class="icon left-icon">attach_money</mat-icon>
+              <mat-icon class="icon left-icon">person</mat-icon>
               <input
-                type="number"
-                placeholder="e.g. 500"
-                [(ngModel)]="minRate"
-                (ngModelChange)="onMinRateChange($event)"
+                type="text"
+                placeholder="e.g. Hero/Editor/Singer.."
+                [(ngModel)]="role"
+                (ngModelChange)="onRoleChange($event)"
               />
             </div>
-          </div>
-
-          <div class="filter-group checkbox-group">
-            <label class="checkbox-label">
-              <div class="custom-checkbox" [class.checked]="remoteOnly">
-                @if (remoteOnly) {
-                  <mat-icon>done</mat-icon>
-                }
-              </div>
-              <input type="checkbox" [(ngModel)]="remoteOnly" />
-              <span class="text">Remote / Remote-Friendly</span>
-            </label>
           </div>
         </div>
 

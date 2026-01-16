@@ -4,8 +4,12 @@
     (filtersChange)="onFiltersChanged($event)"
     ></app-filters-component>
   <div class="job-data">
-    @for(data of filteredJobs; track data.id) {
-      <app-jobcard [jobData]="data"></app-jobcard>
+    @if(filteredJobs.length === 0) {
+      <p style="color: gray;">no match found, explore more..!!</p>
+    } @else {
+      @for(data of filteredJobs; track data.id) {
+        <app-jobcard [jobData]="data"></app-jobcard>
+      }
     }
   </div>
 </div>

@@ -14,6 +14,6 @@ export class App {
   isLoggedIn = computed(() => this.authService.isLoggedIn());
 
   constructor(private authService: AuthService) {
-    console.log(this.authService.isLoggedIn())
+    
   }
 }

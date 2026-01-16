@@ -99,6 +99,5 @@ export class Login {
 
   enableLogin(event: boolean) {
     this.isEnabledLogin = event;
-    console.log('Login enabled:', this.isEnabledLogin);
   }
 }

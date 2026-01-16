@@ -85,3 +85,19 @@ body {
 .mat-mdc-paginator-page-size {
   display: none !important;
 }
+
+.mat-menu-panel {
+  background-color: #1e1e1e !important;
+  border-radius: 4px !important;
+    .delete-menu-item {
+      font-size: small;
+      font-weight: bold;
+      min-height: 0 !important;
+      letter-spacing: 0.5px;
+      padding: 5px;
+    }
+}
+
+.notification-highlights {
+  color: white;
+}

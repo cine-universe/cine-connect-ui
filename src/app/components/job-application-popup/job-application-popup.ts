@@ -3,6 +3,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-job-application-popup',
@@ -23,7 +24,8 @@ export class JobApplicationPopup {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<JobApplicationPopup>,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.jobId = data.jobId;
     this.jobTitle = data.jobTitle;
@@ -42,8 +44,11 @@ export class JobApplicationPopup {
       const formValue = this.applicationForm.getRawValue();
       this.dialogRef.close({ 
         jobId: this.jobId, 
-        phone: formValue.phone 
+        phone: formValue.phone,
+        jobTitle: this.jobTitle,
+        companyName: this.companyName
       });
+      this.toastr.success('Application submitted successfully! Check status in My Applications', 'Success');
     } else {
       this.applicationForm.markAllAsTouched(); 
     }

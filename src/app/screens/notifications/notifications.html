@@ -1,0 +1,34 @@
+<app-mobile-header></app-mobile-header>
+<div class="notifications">
+    <div class="notify-header">
+        @for(category of categories; track category) {
+            <p [class.active]="category === selectedCategory" (click)="filterNotifications(category)">{{ category }}</p>
+        }
+    </div>
+    <div class="notify-section">
+        @if(filteredNotifications.length === 0) {
+            <p class="no-notifications">No Notifications</p>
+        } @else {
+            @for(notification of filteredNotifications; track notification.id) {
+                <div class="notification-card" [class.unread]="notification.read===false">
+                    <div class="notify-dp">
+                        <img [src]="notification.avatarUrl" alt="User Avatar">
+                    </div>
+                    <div class="notify-content" (click)="openNotification(notification)">
+                        <p [innerHtml]="notification.message"></p>
+                    </div>
+                    <div class="notify-actions">
+                        <span class="time">{{ notification.timestamp | timeAgo }}</span>
+                        <mat-icon [matMenuTriggerFor]="menu" class="horiz">more_horiz</mat-icon>
+                        <mat-icon [matMenuTriggerFor]="menu" class="vertiz">more_vertiz</mat-icon>
+                        <mat-menu #menu="matMenu" class="mat-menu-panel">
+                            <button mat-menu-item class="delete-menu-item" (click)="deleteNotification(notification.id)">
+                                <mat-icon>delete</mat-icon>Delete Notification
+                            </button>
+                        </mat-menu>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

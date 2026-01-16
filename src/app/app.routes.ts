@@ -7,6 +7,7 @@ import { Login } from './screens/login/login';
 import { Oauth2RedirectComponent } from './components/oauth2-redirect-component/oauth2-redirect-component';
 import { authGuard } from './services/auth-guard';
 import { Applications } from './screens/applications/applications';
+import { Notifications } from './screens/notifications/notifications';
 
 export const routes: Routes = [
   { path: 'login', component: Login },
@@ -16,9 +17,11 @@ export const routes: Routes = [
     path: '',
     canActivate: [authGuard],
     children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomePage },
       { path: 'feed', component: JobBoard },
       { path: 'messages', component: Messages },
+      { path: 'notifications', component: Notifications },
       { path: 'profile', component: Profile },
       { path: 'applications', component: Applications },
     ]

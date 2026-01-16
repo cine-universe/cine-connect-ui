@@ -8,6 +8,7 @@ import { JobData } from '../../models/JobData';
 import { MatDialog } from '@angular/material/dialog';
 import { JobApplicationPopup } from '../job-application-popup/job-application-popup';
 import { JobService } from '../../services/job-service';
+import { NotificationService } from '../../services/notification-service';
 
 @Component({
   selector: 'app-jobcard',
@@ -28,7 +29,8 @@ export class Jobcard implements OnInit {
   applicationStatus = signal('Apply');
 
   constructor(
-    private jobService: JobService
+    private jobService: JobService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +56,14 @@ export class Jobcard implements OnInit {
       if (result && result.jobId) {
         this.applicationStatus.set('Applied');
         this.jobService.addApplication(result.jobId);
+        this.notificationService.publishNotification({
+          id: new Date().getTime(),
+          type: 'application_update',
+          message: `Your application for the <strong class="notification-highlights">${result.jobTitle}</strong> position at <strong class="notification-highlights">${result.companyName}</strong> has been submitted successfully.`,
+          timestamp: new Date(),
+          avatarUrl: 'https://picsum.photos/id/65/200/200',
+          read: false
+        });
       }
     });
   }
